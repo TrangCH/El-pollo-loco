@@ -1,6 +1,6 @@
 class Chicken extends MovableObject {
  
-    y = 300;
+    y = 290;
     
 
     /**
