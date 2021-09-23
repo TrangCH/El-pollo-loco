@@ -10,8 +10,15 @@ class World {
     clouds = [
         new Cloud()
     ];
-    canvas;
+    backgroundObjects = [
+        new BackgroundObject('img/5.Fondo/Capas/3.Fondo3/1.png', 0, 80), // constructor(imagePath, x, y)
+        new BackgroundObject('img/5.Fondo/Capas/2.Fondo2/1.png', 0, 80), // constructor(imagePath, x, y)
+        new BackgroundObject('img/5.Fondo/Capas/1.suelo-fondo1/1.png', 0, 80) // constructor(imagePath, x, y)
+        
+    ];
     ctx;
+    canvas;
+
 
     constructor(canvas) {
         this.ctx = canvas.getContext('2d');
@@ -31,31 +38,45 @@ class World {
          */
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-        this.ctx.drawImage(this.character.img, this.character.x, this.character.y, this.character.width, this.character.height);
-        
         /**
-         * Automate for our chickens, for each item from enemies.
+         * Add MovableObject, character to map.
+         * Pay attention to the order !
          */
-        this.enemies.forEach(enemy => { // Don't forget this
-            this.ctx.drawImage(enemy.img, enemy.x, enemy.y, enemy.width, enemy.height);
-        });
+        this.addObjectsToMap(this.backgroundObjects);
+        this.addToMap(this.character);
+        this.addObjectsToMap(this.clouds);
+        this.addObjectsToMap(this.enemies);
 
-         /**
-         * Automate for our clouds, for each item from enemies.
-         */
-          this.clouds.forEach(cloud => { // Don't forget this
-            this.ctx.drawImage(cloud.img, cloud.x, cloud.y, cloud.width, cloud.height);
-        });
 
         /**
          * The draw method is called as often as the graphics card allows.
          */
-        self = this;
+        let self = this;
         // This function will only be carried out when all functions above have been carried out.
         requestAnimationFrame(function () {
             self.draw(); // asynchrone
         });
 
+    }
+
+    /**
+      * To add multiple objects
+      * @param {} objects 
+      */
+    // addTo, eine forEach-Schleife für mehrere
+    addObjectsToMap(objects) { // mehrere Objects (Name der Objektgruppe)
+        objects.forEach(o => {
+            this.addToMap(o); // Jedes Objekt aus dieser Objecktgruppe wird zu der map hinzugefügt.
+        });
+    }
+
+
+    /**
+     * To add an object to mao
+     * @param {string} mo MovableObject
+     */
+    addToMap(mo) {
+        this.ctx.drawImage(mo.img, mo.x, mo.y, mo.width, mo.height);
     }
 
 }

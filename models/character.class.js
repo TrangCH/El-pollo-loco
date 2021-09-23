@@ -1,5 +1,7 @@
 class Character extends MovableObject {
 
+    
+
     /**
      * This function is always there. In every class. It is always called first of all.
      */

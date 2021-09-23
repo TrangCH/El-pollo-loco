@@ -1,5 +1,7 @@
 class Chicken extends MovableObject {
-   
+ 
+    y = 300;
+    
 
     /**
     * This function is always there. In every class. It is always called first of all.
