@@ -11,9 +11,18 @@ class BackgroundObject extends MovableObject {
         this.x = x;
         this.y = 480 - this.height; // 480 - 400(Höhe des Bildes)
        
-
+        this.animate(numerOfRepetition);
 
     }
 
+    /**
+     * Animation of the moving object
+     */
+     animate(x) {
+        setInterval(() => {
+            this.x -= 1;
+        }, x); // 10x per second
+
+    }
 
 }

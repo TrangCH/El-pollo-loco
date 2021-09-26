@@ -1,6 +1,7 @@
 class Character extends MovableObject {
 
-    
+    height = 250;
+    y = 185;
 
     /**
      * This function is always there. In every class. It is always called first of all.

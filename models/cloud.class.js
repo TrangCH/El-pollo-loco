@@ -10,10 +10,21 @@ class Cloud extends MovableObject {
         // super(), nur bei Methoden in übergeordneten Klassen
         super().loadImage('img/5.Fondo/Capas/4.nubes/1.png');
 
+
         this.x = 0 + Math.random() * 500; //  Math.random() liegt zwischen 0 und 1, Zahl zwischen 200 und 700
-        
-    
+
+        this.animate();
+
     }
 
+    /**
+     * Animation of the moving object
+     */
+    animate() {
+        setInterval(() => {
+            this.x -= 1;
+        }, 100); // 10x per second
+
+    }
 
 }
