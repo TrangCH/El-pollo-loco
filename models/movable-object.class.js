@@ -5,6 +5,7 @@ class MovableObject { // template
     width = 100;
     height = 150;
     imageCache = {}; // Bilderspeicher JSON
+    currentImage = 0;
 
     /**
      * This function loads the image.
@@ -25,7 +26,7 @@ class MovableObject { // template
         arr.forEach(path => {
             let img = new Image();
             img.src = path; // Laden wir das Bild in dieses Image-Objekt hinein.
-            this.imageCache[path] = path; // siehe imageCache oben // update imageCache
+            this.imageCache[path] = img; // siehe imageCache oben // update imageCache // img muss reingeladen werden
         });
 
     }
