@@ -19,6 +19,7 @@ class Chicken extends MovableObject {
         this.loadImages(this.IMAGES_WALKING); // Important!
 
         this.x = 200 + Math.random() * 500; //  Math.random() liegt zwischen 0 und 1, Zahl zwischen 200 und 700
+        this.speed = 0.1 + Math.random() * 0.25;
 
         this.animate();
 
@@ -28,6 +29,8 @@ class Chicken extends MovableObject {
      * Switch pictures (motion)
      */
       animate() {
+
+        this.moveLeft();
 
         setInterval(() => {
             // currentImage wird fortlaufen erhöht

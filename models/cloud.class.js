@@ -2,7 +2,7 @@ class Cloud extends MovableObject {
     y = 20;
     width = 500;
     height = 300;
-
+  
     /**
        * This function is always there. In every class. It is always called first of all.
        */
@@ -21,10 +21,8 @@ class Cloud extends MovableObject {
      * Animation of the moving object
      */
     animate() {
-        setInterval(() => {
-            this.x -= 0.1;
-        }, 1000 / 60); // 10x per second
-
+        this.moveLeft();
     }
 
+   
 }

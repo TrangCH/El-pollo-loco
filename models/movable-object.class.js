@@ -6,6 +6,8 @@ class MovableObject { // template
     height = 150;
     imageCache = {}; // Bilderspeicher JSON
     currentImage = 0;
+    speed = 0.1;
+
 
     /**
      * This function loads the image.
@@ -43,6 +45,8 @@ class MovableObject { // template
     * Move to the left
     */
     moveLeft() {
-
+        setInterval(() => {
+            this.x -= this.speed;
+        }, 1000 / 60); // 10x per second
     }
 }
