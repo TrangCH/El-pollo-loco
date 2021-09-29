@@ -1,5 +1,6 @@
 class Character extends MovableObject {
 
+    speed = 5;
     height = 250;
     y = 185;
     IMAGES_WALKING = [
@@ -10,13 +11,14 @@ class Character extends MovableObject {
         'img/2.Secuencias_Personaje-Pepe-corrección/2.Secuencia_caminata/W-25.png',
         'img/2.Secuencias_Personaje-Pepe-corrección/2.Secuencia_caminata/W-26.png',
     ];
-    
+    world;
+
     /**
      * This function is always there. In every class. It is always called first of all.
      */
     constructor() {
         super().loadImage('img/2.Secuencias_Personaje-Pepe-corrección/2.Secuencia_caminata/W-21.png');
-        this.loadImages(this.IMAGES_WALKING); 
+        this.loadImages(this.IMAGES_WALKING);
 
         this.animate();
 
@@ -28,14 +30,27 @@ class Character extends MovableObject {
     animate() {
 
         setInterval(() => {
-            // currentImage wird fortlaufen erhöht
-            // IMAGES_WALKING.length bleibt 6 (Länge des Arrays)
-            let i = this.currentImage % this.IMAGES_WALKING.length; // Modulo Restklassen let i = 0 & 6
-            // i = 0, 1, 2,  3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, ...
-            let path = this.IMAGES_WALKING[i];
-            this.img = this.imageCache[path]; // setze das Bild in unserem cache // Wir wollen auf einen Eintrag aus unserem Array zugreifen. Keine Funktion.
-            this.currentImage++;            
-        }, 100);
+            if (this.world.keyboard.RIGHT) { // Wenn die Taste rechts gedrückt wird, dann soll Folgendes passieren:
+                this.x += this.speed; // Um x Pixel pro Sekunde nach rechts.
+            }
+            if (this.world.keyboard.LEFT) { // Wenn die Taste rechts gedrückt wird, dann soll Folgendes passieren:
+                this.x -= this.speed; // Um x Pixel pro Sekunde nach rechts.
+            }
+        }, 1000 / 60); // 60 mal pro Sekunde
+
+
+        setInterval(() => { // Ein logisches Oder  ||
+            if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) { // Wenn die Taste rechts gedrückt wird, dann soll Folgendes passieren:
+                
+                // currentImage wird fortlaufen erhöht
+                // IMAGES_WALKING.length bleibt 6 (Länge des Arrays)
+                let i = this.currentImage % this.IMAGES_WALKING.length; // Modulo Restklassen let i = 0 & 6
+                // i = 0, 1, 2,  3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, ...
+                let path = this.IMAGES_WALKING[i];
+                this.img = this.imageCache[path]; // setze das Bild in unserem cache // Wir wollen auf einen Eintrag aus unserem Array zugreifen. Keine Funktion.
+                this.currentImage++;
+            }
+        }, 50);
 
     }
 

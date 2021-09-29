@@ -19,15 +19,23 @@ class World {
     ];
     ctx;
     canvas;
+    keyboard;
 
-
-    constructor(canvas) {
+    /**
+     * This function is always there. In every class. It is always called first of all.
+     */
+    constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;     // Greifen auf globale Variable zu. Das rechte canvas wird in das linke reingeschrieben.
+        this.keyboard = keyboard;
         this.draw();
+        this.setWorld();
 
     }
 
+    setWorld() {
+        this.character.world = this;
+    }
 
 
     /**
