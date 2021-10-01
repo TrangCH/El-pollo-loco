@@ -32,10 +32,13 @@ class Character extends MovableObject {
         setInterval(() => {
             if (this.world.keyboard.RIGHT) { // Wenn die Taste rechts gedrückt wird, dann soll Folgendes passieren:
                 this.x += this.speed; // Um x Pixel pro Sekunde nach rechts.
+                this.otherDirection = false;
             }
             if (this.world.keyboard.LEFT) { // Wenn die Taste rechts gedrückt wird, dann soll Folgendes passieren:
                 this.x -= this.speed; // Um x Pixel pro Sekunde nach rechts.
+                this.otherDirection = true;
             }
+            this.world.camera_x = -this.x;
         }, 1000 / 60); // 60 mal pro Sekunde
 
 

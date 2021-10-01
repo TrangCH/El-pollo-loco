@@ -7,6 +7,7 @@ class MovableObject { // template
     imageCache = {}; // Bilderspeicher JSON
     currentImage = 0;
     speed = 0.1;
+    otherDirection = false; // false, weil standardmäßig sollte kein Bild gespiegelt sein
 
 
     /**
