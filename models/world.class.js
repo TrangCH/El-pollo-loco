@@ -2,9 +2,7 @@ class World {
 
     // You no longer need a let within a class, a const or a var.
     character = new Character();
-    enemies = level1.enemies;
-    clouds = level1.clouds;
-    backgroundObjects = level1.backgroundObjects;
+    level = level1;
     ctx;
     canvas;
     keyboard;
@@ -42,10 +40,10 @@ class World {
          * Add MovableObject, character to map.
          * Pay attention to the order !
          */
-        this.addObjectsToMap(this.backgroundObjects);
+        this.addObjectsToMap(this.level.backgroundObjects);
         this.addToMap(this.character);
-        this.addObjectsToMap(this.clouds);
-        this.addObjectsToMap(this.enemies);
+        this.addObjectsToMap(this.level.clouds);
+        this.addObjectsToMap(this.level.enemies);
 
         this.ctx.translate(-this.camera_x, 0); // Gesamten Kontext zurück verschieben.
 

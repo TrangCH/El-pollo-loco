@@ -30,15 +30,16 @@ class Character extends MovableObject {
     animate() {
 
         setInterval(() => {
-            if (this.world.keyboard.RIGHT) { // Wenn die Taste rechts gedrückt wird, dann soll Folgendes passieren:
+            if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) { // Wenn die Taste rechts gedrückt wird, dann soll Folgendes passieren:
                 this.x += this.speed; // Um x Pixel pro Sekunde nach rechts.
                 this.otherDirection = false;
             }
-            if (this.world.keyboard.LEFT) { // Wenn die Taste rechts gedrückt wird, dann soll Folgendes passieren:
+            // Nach links nur, wenn x größer 0
+            if (this.world.keyboard.LEFT && this.x > 0) { // Wenn die Taste rechts gedrückt wird, dann soll Folgendes passieren:
                 this.x -= this.speed; // Um x Pixel pro Sekunde nach rechts.
                 this.otherDirection = true;
             }
-            this.world.camera_x = -this.x;
+            this.world.camera_x = -this.x + 100; // + 100 in x-Richtung
         }, 1000 / 60); // 60 mal pro Sekunde
 
 
