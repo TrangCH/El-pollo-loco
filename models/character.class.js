@@ -12,6 +12,7 @@ class Character extends MovableObject {
         'img/2.Secuencias_Personaje-Pepe-corrección/2.Secuencia_caminata/W-26.png',
     ];
     world;
+    // walking_sound = new Audio('audio/running.mp3');
 
     /**
      * This function is always there. In every class. It is always called first of all.
@@ -30,14 +31,17 @@ class Character extends MovableObject {
     animate() {
 
         setInterval(() => {
+            // this.walking_sound.pause();
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) { // Wenn die Taste rechts gedrückt wird, dann soll Folgendes passieren:
                 this.x += this.speed; // Um x Pixel pro Sekunde nach rechts.
                 this.otherDirection = false;
+                // this.walking_sound.play();
             }
             // Nach links nur, wenn x größer 0
             if (this.world.keyboard.LEFT && this.x > 0) { // Wenn die Taste rechts gedrückt wird, dann soll Folgendes passieren:
                 this.x -= this.speed; // Um x Pixel pro Sekunde nach rechts.
                 this.otherDirection = true;
+                // this.walking_sound.play();
             }
             this.world.camera_x = -this.x + 100; // + 100 in x-Richtung
         }, 1000 / 60); // 60 mal pro Sekunde
