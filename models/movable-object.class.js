@@ -8,7 +8,7 @@ class MovableObject { // template
     currentImage = 0;
     speed = 0.1;
     otherDirection = false; // false, weil standardmäßig sollte kein Bild gespiegelt sein
-
+    
 
     /**
      * This function loads the image.
@@ -34,6 +34,15 @@ class MovableObject { // template
 
     }
 
+    playAnimation(images) {
+        // currentImage wird fortlaufen erhöht
+        // IMAGES_WALKING.length bleibt 6 (Länge des Arrays)
+        let i = this.currentImage % this.IMAGES_WALKING.length; // Modulo Restklassen let i = 0 & 6
+        // i = 0, 1, 2,  3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, ...
+        let path = images[i];
+        this.img = this.imageCache[path]; // setze das Bild in unserem cache // Wir wollen auf einen Eintrag aus unserem Array zugreifen. Keine Funktion.
+        this.currentImage++;
+    }
 
     /**
      *  Move to the right

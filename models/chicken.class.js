@@ -29,17 +29,10 @@ class Chicken extends MovableObject {
      * Switch pictures (motion)
      */
       animate() {
-
         this.moveLeft();
 
         setInterval(() => {
-            // currentImage wird fortlaufen erhöht
-            // IMAGES_WALKING.length bleibt 6 (Länge des Arrays)
-            let i = this.currentImage % this.IMAGES_WALKING.length; // Modulo Restklassen let i = 0 & 6
-            // i = 0, 1, 2,  3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, ...
-            let path = this.IMAGES_WALKING[i];
-            this.img = this.imageCache[path]; // setze das Bild in unserem cache // Wir wollen auf einen Eintrag aus unserem Array zugreifen. Keine Funktion.
-            this.currentImage++;            
+           this.playAnimation(this.IMAGES_WALKING);     
         }, 100);
 
     }

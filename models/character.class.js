@@ -50,13 +50,7 @@ class Character extends MovableObject {
         setInterval(() => { // Ein logisches Oder  ||
             if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) { // Wenn die Taste rechts gedrückt wird, dann soll Folgendes passieren:
                 
-                // currentImage wird fortlaufen erhöht
-                // IMAGES_WALKING.length bleibt 6 (Länge des Arrays)
-                let i = this.currentImage % this.IMAGES_WALKING.length; // Modulo Restklassen let i = 0 & 6
-                // i = 0, 1, 2,  3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, ...
-                let path = this.IMAGES_WALKING[i];
-                this.img = this.imageCache[path]; // setze das Bild in unserem cache // Wir wollen auf einen Eintrag aus unserem Array zugreifen. Keine Funktion.
-                this.currentImage++;
+                this.playAnimation(this.IMAGES_WALKING);
             }
         }, 50);
 
