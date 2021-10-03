@@ -8,7 +8,25 @@ class MovableObject { // template
     currentImage = 0;
     speed = 0.1;
     otherDirection = false; // false, weil standardmäßig sollte kein Bild gespiegelt sein
-    
+    speedY = 0; // speed in y-Richtung
+    acceleration = 2.5; // Beschleunigung (vereinfachte Gravitationskraft)
+
+    /**
+     * Apply gravity to a movable object
+     */
+    applyGravity() {
+        setInterval(() => {
+            if (this.isAboveGround()) {
+                this.y -= this.speedY; // y-Achse - speed in y-Richtung
+                this.speedY -= this.acceleration; // speed in y-Richtung - Beschleunigung
+            }
+        }, 1000 / 25); // 25x pro Sekunde
+    }
+
+
+    isAboveGround() {
+        return this.y < 180;
+    }
 
     /**
      * This function loads the image.
