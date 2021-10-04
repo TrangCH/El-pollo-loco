@@ -39,6 +39,22 @@ class MovableObject { // template
         this.img.src = path;
     }
 
+    draw(ctx) {
+        ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
+    }
+
+    /**
+     * Draw frame around movableObject
+     */
+    drawFrame(ctx){
+         // Blue rectangle
+         ctx.beginPath();
+         ctx.lineWidth = '5';
+         ctx.strokeStyle = 'blue';
+         ctx.rect(this.x, this.y, this.width,this.height);
+         ctx.stroke();
+    };
+
 
     /**
      * This function loads the images.
@@ -68,7 +84,6 @@ class MovableObject { // template
      */
     moveRight() { // In many modern concepts and paradigms, the word "function" is no longer needed.
         this.x += this.speed; // Um x Pixel pro Sekunde nach rechts.
-        this.otherDirection = false;
     }
 
     /**
@@ -76,7 +91,6 @@ class MovableObject { // template
     */
     moveLeft() {
         this.x -= this.speed; // Um x Pixel pro Sekunde nach rechts.
-        this.otherDirection = true;
     }
 
    

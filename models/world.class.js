@@ -75,19 +75,36 @@ class World {
      * @param {string} mo MovableObject
      */
     addToMap(mo) {
-        if(mo.otherDirection) { // Hat unser Objekt eine andere Richtung? Wenn ja, dann folgt:
-            this.ctx.save();    // Aktuellen Status von unserem Kontext speichern
-            this.ctx.translate(mo.width, 0); // Drehen das um an der y-Achse
-            this.ctx.scale(-1, 1); // Spiegeln alles 
-            mo.x = mo.x * -1;
+        if (mo.otherDirection) { // Hat unser Objekt eine andere Richtung? Wenn ja, dann folgt:
+            this.flipImage(mo);
         }
-        this.ctx.drawImage(mo.img, mo.x, mo.y, mo.width, mo.height); // Dann fügen wir das gespielte Bild ein.
+        mo.draw(this.ctx);
+
+        mo.drawFrame(this.ctx);
+
 
         // Alles wieder rückgängig machen, damit die nächsten Bilder nicht mehr gespiegelt sind.
         if (mo.otherDirection) { // Wenn wir unseren Kontext verändert haben, dann:
-            mo.x = mo.x * -1;
-            this.ctx.restore(); // Alle Änderungen rückgängig machen.
+            this.flipImageBack(mo);
         }
+    }
+
+    /**
+     * Bild drehen
+     */
+    flipImage(mo) {
+        this.ctx.save();    // Aktuellen Status von unserem Kontext speichern
+        this.ctx.translate(mo.width, 0); // Drehen das um an der y-Achse
+        this.ctx.scale(-1, 1); // Spiegeln alles 
+        mo.x = mo.x * -1;
+    }
+
+    /**
+     * Bild zurück drehen
+     */
+    flipImageBack(mo) {
+        mo.x = mo.x * -1;
+        this.ctx.restore(); // Alle Änderungen rückgängig machen.
     }
 
 }

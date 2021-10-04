@@ -51,11 +51,13 @@ class Character extends MovableObject {
             // this.walking_sound.pause();
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) { // Wenn die Taste rechts gedrückt wird, dann soll Folgendes passieren:
                 this.moveRight();
+                this.otherDirection = false;
                  // this.walking_sound.play();
             }
             // Nach links nur, wenn x größer 0
             if (this.world.keyboard.LEFT && this.x > 0) { // Wenn die Taste rechts gedrückt wird, dann soll Folgendes passieren:
                 this.moveLeft();
+                this.otherDirection = true;
                 // this.walking_sound.play();
             }
 
