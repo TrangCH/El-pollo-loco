@@ -50,20 +50,18 @@ class Character extends MovableObject {
         setInterval(() => {
             // this.walking_sound.pause();
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) { // Wenn die Taste rechts gedrückt wird, dann soll Folgendes passieren:
-                this.x += this.speed; // Um x Pixel pro Sekunde nach rechts.
-                this.otherDirection = false;
-                // this.walking_sound.play();
+                this.moveRight();
+                 // this.walking_sound.play();
             }
             // Nach links nur, wenn x größer 0
             if (this.world.keyboard.LEFT && this.x > 0) { // Wenn die Taste rechts gedrückt wird, dann soll Folgendes passieren:
-                this.x -= this.speed; // Um x Pixel pro Sekunde nach rechts.
-                this.otherDirection = true;
+                this.moveLeft();
                 // this.walking_sound.play();
             }
 
             // Wenn die Taste UP gedrückt wird, dann setze soeedY auf 20.
-            if (this.world.keyboard.UP) {
-                this.speedY = 20;
+            if (this.world.keyboard.SPACE && !this.isAboveGround()) { // ! bdeutet nicht
+                this.jump(); //  (CleanCoding)
             }
 
             this.world.camera_x = -this.x + 100; // + 100 in x-Richtung
@@ -87,12 +85,11 @@ class Character extends MovableObject {
 
     }
 
-
-    /**
-     * To jump
+     /**
+     * to jump (CleanCoding)
      */
-    jump() {
-
+      jump() {
+        this.speedY = 30;
     }
 
 

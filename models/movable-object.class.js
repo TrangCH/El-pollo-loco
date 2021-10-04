@@ -67,15 +67,17 @@ class MovableObject { // template
      *  Move to the right
      */
     moveRight() { // In many modern concepts and paradigms, the word "function" is no longer needed.
-        console.log('Moving right');
+        this.x += this.speed; // Um x Pixel pro Sekunde nach rechts.
+        this.otherDirection = false;
     }
 
     /**
     * Move to the left
     */
     moveLeft() {
-        setInterval(() => {
-            this.x -= this.speed;
-        }, 1000 / 60); // 10x per second
+        this.x -= this.speed; // Um x Pixel pro Sekunde nach rechts.
+        this.otherDirection = true;
     }
+
+   
 }
