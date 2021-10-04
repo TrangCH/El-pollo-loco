@@ -60,6 +60,12 @@ class Character extends MovableObject {
                 this.otherDirection = true;
                 // this.walking_sound.play();
             }
+
+            // Wenn die Taste UP gedrückt wird, dann setze soeedY auf 20.
+            if (this.world.keyboard.UP) {
+                this.speedY = 20;
+            }
+
             this.world.camera_x = -this.x + 100; // + 100 in x-Richtung
         }, 1000 / 60); // 60 mal pro Sekunde
 

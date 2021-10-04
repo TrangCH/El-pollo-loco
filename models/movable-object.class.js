@@ -16,7 +16,8 @@ class MovableObject { // template
      */
     applyGravity() {
         setInterval(() => {
-            if (this.isAboveGround()) {
+            // Wenn character über dem Boden ist oder Geschwindigkeit ist größer 0 nach oben, dann setze Gravi ein.
+            if (this.isAboveGround() || this.speedY > 0) {
                 this.y -= this.speedY; // y-Achse - speed in y-Richtung
                 this.speedY -= this.acceleration; // speed in y-Richtung - Beschleunigung
             }
