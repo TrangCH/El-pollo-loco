@@ -72,7 +72,14 @@ class MovableObject { // template
      * Damage
      */
     hit() {
-        this.character.energy -= 5;
+        this.energy -= 5;
+        if(this.energy < 0) {
+            this.energy = 0;
+        }
+    }
+
+    isDead() {
+        return this.energy == 0;
     }
 
     /**
