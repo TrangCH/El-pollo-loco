@@ -17,11 +17,27 @@ class World {
         this.keyboard = keyboard;
         this.draw();
         this.setWorld();
-
+        this.checkCollisions();
     }
 
     setWorld() {
         this.character.world = this;
+    }
+
+    /**
+     * It should regularly check whether two objects collide with each other or not.
+     */
+    checkCollisions() {
+        setInterval(() => {
+            // Um alle meine Gegner zu kriegen.
+            // forEach: kontrolliere für jeden einzelnen Gegner, ob meine Gegner mit meinem character kollidieren.
+            this.level.enemies.forEach((enemy) => {
+                if(this.character.isColliding(enemy) ) {
+                    this.character.hit();
+                    console.log('collision with character, energy', this.character.energy);
+                }
+            });
+        }, 200);
     }
 
 
