@@ -18,6 +18,7 @@ function init() {
  * As soon as the button is pressed.
  */
 window.addEventListener('keydown', (e) => { // Gilt für alle Tasten.
+    // console.log(e.keyCode); // TastenCode
     if (e.keyCode == 39) {
         keyboard.RIGHT = true;
     }
@@ -37,7 +38,11 @@ window.addEventListener('keydown', (e) => { // Gilt für alle Tasten.
     if (e.keyCode == 32) {
         keyboard.SPACE = true;
     }
-    console.log(e);
+
+    if (e.keyCode == 68) {
+        keyboard.D = true;
+    }
+    
 });
 
 /**
@@ -63,5 +68,8 @@ window.addEventListener('keyup', (e) => { // Gilt für alle Tasten.
     if (e.keyCode == 32) {
         keyboard.SPACE = false;
     }
-    console.log(e);
+    
+    if (e.keyCode == 68) {
+        keyboard.D = false;
+    }
 });

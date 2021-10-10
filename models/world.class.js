@@ -7,6 +7,8 @@ class World {
     canvas;
     keyboard;
     camera_x = 0; // Wir wollen es nach rechts verschieben.
+    statusbar = new Statusbar();
+    throwableObjects = [];
 
     /**
      * This function is always there. In every class. It is always called first of all.
@@ -17,7 +19,7 @@ class World {
         this.keyboard = keyboard;
         this.draw();
         this.setWorld();
-        this.checkCollisions();
+        this.run();
     }
 
     setWorld() {
@@ -27,17 +29,29 @@ class World {
     /**
      * It should regularly check whether two objects collide with each other or not.
      */
-    checkCollisions() {
+    run() {
         setInterval(() => {
-            // Um alle meine Gegner zu kriegen.
-            // forEach: kontrolliere für jeden einzelnen Gegner, ob meine Gegner mit meinem character kollidieren.
-            this.level.enemies.forEach((enemy) => {
-                if(this.character.isColliding(enemy) ) {
-                    this.character.hit();
-                    console.log('collision with character, energy', this.character.energy);
-                }
-            });
+            this.checkCollisions();
+            this.checkThrowObjects();
         }, 200);
+    }
+
+    checkThrowObjects() {
+        if(this.keyboard.D) {
+            let bottle = new ThrowableObject(this.character.x + 70, this.character.y + 70); // Von Koordinate (x, y) character
+            this.throwableObjects.push(bottle); // Füge neuen bottel hinzu
+        }
+    }
+
+    checkCollisions() {
+        // Um alle meine Gegner zu kriegen.
+        // forEach: kontrolliere für jeden einzelnen Gegner, ob meine Gegner mit meinem character kollidieren.
+        this.level.enemies.forEach((enemy) => {
+            if (this.character.isColliding(enemy)) {
+                this.character.hit();
+                this.statusbar.setPercentage(this.character.energy);
+            }
+        });
     }
 
 
@@ -57,9 +71,17 @@ class World {
          * Pay attention to the order !
          */
         this.addObjectsToMap(this.level.backgroundObjects);
+
+        this.ctx.translate(-this.camera_x, 0); // Gesamten Kontext zurück verschieben. Back
+
+        // -----> Space for fixed objects <-----
+        this.addToMap(this.statusbar);
+        this.ctx.translate(this.camera_x, 0); // Gesamten Kontext verschieben. Forwards
+
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.enemies);
+        this.addObjectsToMap(this.throwableObjects);
 
         this.ctx.translate(-this.camera_x, 0); // Gesamten Kontext zurück verschieben.
 
@@ -95,9 +117,7 @@ class World {
             this.flipImage(mo);
         }
         mo.draw(this.ctx);
-
         mo.drawFrame(this.ctx);
-
 
         // Alles wieder rückgängig machen, damit die nächsten Bilder nicht mehr gespiegelt sind.
         if (mo.otherDirection) { // Wenn wir unseren Kontext verändert haben, dann:

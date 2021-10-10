@@ -90,7 +90,6 @@ class Character extends MovableObject {
 
 
         setInterval(() => {
-
             if(this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
             } else if (this.isHurt()) {
@@ -104,7 +103,7 @@ class Character extends MovableObject {
                     this.playAnimation(this.IMAGES_WALKING);
                 }
             }
-        }, 50);
+        }, 50); // 50
 
     }
 

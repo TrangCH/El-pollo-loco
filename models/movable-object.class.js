@@ -1,11 +1,5 @@
-class MovableObject { // template
-    x = 120;
-    y = 280;
-    img;
-    width = 100;
-    height = 150;
-    imageCache = {}; // Bilderspeicher JSON
-    currentImage = 0;
+class MovableObject extends DrawableObject { // template
+
     speed = 0.1;
     otherDirection = false; // false, weil standardmäßig sollte kein Bild gespiegelt sein
     speedY = 0; // speed in y-Richtung
@@ -29,45 +23,22 @@ class MovableObject { // template
 
 
     isAboveGround() {
-        return this.y < 180;
-    }
-
-    /**
-     * This function loads the image.
-     * @param {string} path source
-     */
-    // loadImage('img/teyt.png');
-    loadImage(path) {          // Image already exists. Image only in javascript.
-        this.img = new Image(); // this.img = document.getElementById('image') <img id="image" src>
-        this.img.src = path;
-    }
-
-    draw(ctx) {
-        ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
-    }
-
-    /**
-     * Draw frame around movableObject
-     */
-    drawFrame(ctx){
-        if(this instanceof Character || this instanceof Chicken) {
-         // Blue rectangle
-         ctx.beginPath();
-         ctx.lineWidth = '5';
-         ctx.strokeStyle = 'blue';
-         ctx.rect(this.x, this.y, this.width,this.height);
-         ctx.stroke();
+        // Throwable object should always fall
+        if (this instanceof ThrowableObject) { 
+            return true;
+        } else {
+            return this.y < 180;
         }
-    };
+    }
 
     /**
      * character.isColliding(chicken)
      */
     isColliding(mo) {
         return this.x + this.width > mo.x &&
-        this.y + this.height > mo.y && 
-        this.x < mo.x &&
-        this.y < mo.y + mo.height;
+            this.y + this.height > mo.y &&
+            this.x < mo.x + mo.width && // + mo.width
+            this.y < mo.y + mo.height;
     }
 
     /**
@@ -75,7 +46,7 @@ class MovableObject { // template
      */
     hit() {
         this.energy -= 5;
-        if(this.energy < 0) {
+        if (this.energy < 0) {
             this.energy = 0;
         } else {
             this.lastHit = new Date().getTime();
@@ -96,18 +67,8 @@ class MovableObject { // template
     }
 
     /**
-     * This function loads the images.
-     * @param {array} arr  = ['img/image1.png, 'img/image2.png', ...]
+     * This is how we change an image
      */
-    loadImages(arr) { // array
-        arr.forEach(path => {
-            let img = new Image();
-            img.src = path; // Laden wir das Bild in dieses Image-Objekt hinein.
-            this.imageCache[path] = img; // siehe imageCache oben // update imageCache // img muss reingeladen werden
-        });
-
-    }
-
     playAnimation(images) {
         // currentImage wird fortlaufen erhöht
         // IMAGES_WALKING.length bleibt 6 (Länge des Arrays)
@@ -132,5 +93,5 @@ class MovableObject { // template
         this.x -= this.speed; // Um x Pixel pro Sekunde nach rechts.
     }
 
-   
+
 }
