@@ -11,7 +11,7 @@ class World {
     coinbar = new Coinbar();
     bottlebar = new Bottlebar();
     throwableObjects = [];
-   
+
 
     /**
      * This function is always there. In every class. It is always called first of all.
@@ -37,10 +37,10 @@ class World {
             this.checkCollisions();
             this.checkThrowObjects();
         }, 200);
-    } 
+    }
 
     checkThrowObjects() {
-        if(this.keyboard.D) {
+        if (this.keyboard.D) {
             let bottle = new ThrowableObject(this.character.x + 70, this.character.y + 70); // Von Koordinate (x, y) character
             this.throwableObjects.push(bottle); // Füge neuen bottel hinzu
         }
@@ -83,12 +83,13 @@ class World {
         this.addToMap(this.bottlebar);
         this.ctx.translate(this.camera_x, 0); // Gesamten Kontext verschieben. Forwards
 
-        this.addToMap(this.character);
+        
         this.addObjectsToMap(this.level.clouds);
-        this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.throwableObjects);
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.bottles);
+        this.addToMap(this.character);
+        this.addObjectsToMap(this.level.enemies);
 
         this.ctx.translate(-this.camera_x, 0); // Gesamten Kontext zurück verschieben.
 
