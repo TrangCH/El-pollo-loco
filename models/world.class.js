@@ -34,7 +34,7 @@ class World {
             this.checkCollisions();
             this.checkThrowObjects();
         }, 200);
-    }
+    } 
 
     checkThrowObjects() {
         if(this.keyboard.D) {
