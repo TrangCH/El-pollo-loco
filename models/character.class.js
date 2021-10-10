@@ -71,7 +71,7 @@ class Character extends MovableObject {
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) { // Wenn die Taste rechts gedrückt wird, dann soll Folgendes passieren:
                 this.moveRight();
                 this.otherDirection = false;
-                 // this.walking_sound.play();
+                // this.walking_sound.play();
             }
             // Nach links nur, wenn x größer 0
             if (this.world.keyboard.LEFT && this.x > 0) { // Wenn die Taste rechts gedrückt wird, dann soll Folgendes passieren:
@@ -90,7 +90,7 @@ class Character extends MovableObject {
 
 
         setInterval(() => {
-            if(this.isDead()) {
+            if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
@@ -107,10 +107,10 @@ class Character extends MovableObject {
 
     }
 
-     /**
-     * to jump (CleanCoding)
-     */
-      jump() {
+    /**
+    * to jump (CleanCoding)
+    */
+    jump() {
         this.speedY = 30;
     }
 

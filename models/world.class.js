@@ -8,7 +8,10 @@ class World {
     keyboard;
     camera_x = 0; // Wir wollen es nach rechts verschieben.
     statusbar = new Statusbar();
+    coinbar = new Coinbar();
+    bottlebar = new Bottlebar();
     throwableObjects = [];
+   
 
     /**
      * This function is always there. In every class. It is always called first of all.
@@ -76,12 +79,16 @@ class World {
 
         // -----> Space for fixed objects <-----
         this.addToMap(this.statusbar);
+        this.addToMap(this.coinbar);
+        this.addToMap(this.bottlebar);
         this.ctx.translate(this.camera_x, 0); // Gesamten Kontext verschieben. Forwards
 
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.throwableObjects);
+        this.addObjectsToMap(this.level.coins);
+        this.addObjectsToMap(this.level.bottles);
 
         this.ctx.translate(-this.camera_x, 0); // Gesamten Kontext zurück verschieben.
 
