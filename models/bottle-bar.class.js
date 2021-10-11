@@ -11,7 +11,7 @@ class Bottlebar extends DrawableObject {
         'img/7.Marcadores/Barra/Marcador_botella/Azul/100_.png' // 5
     ];
 
-    percentage = 100; // Standardmäßig 100%
+    percentage = 0; // Standardmäßig 100%
 
 
 
@@ -22,7 +22,7 @@ class Bottlebar extends DrawableObject {
         this.y = 0;
         this.width = 150;
         this.height = 60;
-        this.setPercentage(100);
+        this.setPercentage(0);
     }
 
     setPercentage(percentage) {
