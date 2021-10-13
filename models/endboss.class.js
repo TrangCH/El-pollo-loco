@@ -67,7 +67,7 @@ class Endboss extends MovableObject {
             } else if (this.isColliding(this.world.character)) {
                 this.playAnimation(this.IMAGES_ATTACK);
             }
-        }, 500); // 50
+        }, 300); // 50
 
     }
 

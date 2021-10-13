@@ -27,7 +27,8 @@ class World {
 
     setWorld() {
         this.character.world = this;
-        this.level.enemies[this.level.enemies.length - 1];
+        // level.enemies[this.level.enemies.length - 1] = Endboss
+        this.level.enemies[this.level.enemies.length - 1].world = this; // => this.endboss.world = this;
     }
 
     /**
