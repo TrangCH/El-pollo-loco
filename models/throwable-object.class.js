@@ -30,7 +30,6 @@ class ThrowableObject extends MovableObject {
     animate() {
         setInterval(() => {
            this.playAnimation(this.IMAGES_FLYING);
-            
         }, 150); // 50
     }
 }

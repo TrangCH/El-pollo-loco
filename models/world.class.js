@@ -10,6 +10,7 @@ class World {
     statusbar = new Statusbar();
     coinbar = new Coinbar();
     bottlebar = new Bottlebar();
+    endbossbar = new Endbossbar();
     throwableObjects = [];
 
 
@@ -47,7 +48,8 @@ class World {
      * This function tests whether button D is pressed and, if necessary, indicates that a bottle has been thrown.
      */
     checkThrowObjects() {
-        if (this.keyboard.D) {
+        if (this.keyboard.D) { // && collectionBottles > 10
+            // collectionBottles -= 10;
             let bottle = new ThrowableObject(this.character.x + 70, this.character.y + 70); // Von Koordinate (x, y) character
             this.throwableObjects.push(bottle); // Füge neuen bottel hinzu
         }
@@ -86,7 +88,10 @@ class World {
         this.level.coins.forEach((coin) => {
             if (this.character.isColliding(coin)) {
                 this.character.toCollectCoins(); 
-                this.character.deleteCoin();
+                // Die indexOf() Methode gibt den Index der Zeichenkette innerhalb des aufrufenden String Objekts des ersten Vorkommnis des angegebenen Wertes beginnend bei fromIndex zurück. Gibt -1 zurück, wenn der Wert nicht gefunden wurde.
+                let position = this.level.coins.indexOf(coin); 
+                this.level.coins.splice(position, 1);
+                //this.character.deleteCoinAfterCollision();
                 this.coinbar.setPercentage(this.character.collectionCoins);
             }
         });
@@ -101,6 +106,9 @@ class World {
         this.level.bottles.forEach((bottle) => {
             if (this.character.isColliding(bottle)) {
                 this.character.toCollectBottles(); 
+                // Die indexOf() Methode gibt den Index der Zeichenkette innerhalb des aufrufenden String Objekts des ersten Vorkommnis des angegebenen Wertes beginnend bei fromIndex zurück. Gibt -1 zurück, wenn der Wert nicht gefunden wurde.
+                let position = this.level.bottles.indexOf(bottle);
+                this.level.bottles.splice(position, 1);
                 this.bottlebar.setPercentage(this.character.collectionBottles);
             }
         });
@@ -129,17 +137,18 @@ class World {
 
         // -----> Space for fixed objects <-----
         this.addToMap(this.statusbar);
+        this.addToMap(this.endbossbar);
         this.addToMap(this.coinbar);
         this.addToMap(this.bottlebar);
         this.ctx.translate(this.camera_x, 0); // Gesamten Kontext verschieben. Forwards
 
 
         this.addObjectsToMap(this.level.clouds);
-        this.addObjectsToMap(this.throwableObjects);
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.bottles);
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.enemies);
+        this.addObjectsToMap(this.throwableObjects);
 
         this.ctx.translate(-this.camera_x, 0); // Gesamten Kontext zurück verschieben.
 
