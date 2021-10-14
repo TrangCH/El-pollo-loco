@@ -41,6 +41,10 @@ class World {
         }, 200);
     }
 
+
+    /**
+     * This function tests whether button D is pressed and, if necessary, indicates that a bottle has been thrown.
+     */
     checkThrowObjects() {
         if (this.keyboard.D) {
             let bottle = new ThrowableObject(this.character.x + 70, this.character.y + 70); // Von Koordinate (x, y) character
@@ -48,6 +52,9 @@ class World {
         }
     }
 
+    /**
+     * This function tests whether a collision with another object is taking place or not.
+     */
     checkCollisions() {
         // Um alle meine Gegner zu kriegen.
         // forEach: kontrolliere für jeden einzelnen Gegner, ob meine Gegner mit meinem character kollidieren.
