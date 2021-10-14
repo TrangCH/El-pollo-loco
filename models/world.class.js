@@ -23,6 +23,7 @@ class World {
         this.draw();
         this.setWorld();
         this.run();
+        this.collect();
     }
 
     setWorld() {
@@ -66,6 +67,46 @@ class World {
         });
     }
 
+    /**
+    * It should regularly check whether two objects collide with each other or not.
+    */
+    collect() {
+        setInterval(() => {
+            this.checkCollisionsCoins();
+            this.checkCollisionsBottles();
+        }, 200);
+    }
+
+    /**
+     * This function tests whether a collision with another object is taking place or not.
+     */
+    checkCollisionsCoins() {
+        // Um alle meine Gegner zu kriegen.
+        // forEach: kontrolliere für jeden einzelnen Gegner, ob meine Gegner mit meinem character kollidieren.
+        this.level.coins.forEach((coin) => {
+            if (this.character.isColliding(coin)) {
+                this.character.toCollectCoins(); 
+                this.character.deleteCoin();
+                this.coinbar.setPercentage(this.character.collectionCoins);
+            }
+        });
+    }
+
+     /**
+     * This function tests whether a collision with another object is taking place or not.
+     */
+      checkCollisionsBottles() {
+        // Um alle meine Gegner zu kriegen.
+        // forEach: kontrolliere für jeden einzelnen Gegner, ob meine Gegner mit meinem character kollidieren.
+        this.level.bottles.forEach((bottle) => {
+            if (this.character.isColliding(bottle)) {
+                this.character.toCollectBottles(); 
+                this.bottlebar.setPercentage(this.character.collectionBottles);
+            }
+        });
+    }
+
+
 
     /**
      * To draw a picture
@@ -92,7 +133,7 @@ class World {
         this.addToMap(this.bottlebar);
         this.ctx.translate(this.camera_x, 0); // Gesamten Kontext verschieben. Forwards
 
-        
+
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.throwableObjects);
         this.addObjectsToMap(this.level.coins);

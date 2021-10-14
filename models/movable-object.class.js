@@ -5,7 +5,11 @@ class MovableObject extends DrawableObject { // template
     speedY = 0; // speed in y-Richtung
     acceleration = 2.5; // Beschleunigung (vereinfachte Gravitationskraft)#
     energy = 100;
+    collectionCoins = 0;
+    collectionBottles = 0;
 
+    lastCollectionCoins = 0;
+    lastCollectionBottles = 0;
     lastHit = 0;
 
     /**
@@ -24,7 +28,7 @@ class MovableObject extends DrawableObject { // template
 
     isAboveGround() {
         // Throwable object should always fall
-        if (this instanceof ThrowableObject) { 
+        if (this instanceof ThrowableObject) {
             return true;
         } else {
             return this.y < 180;
@@ -50,6 +54,30 @@ class MovableObject extends DrawableObject { // template
             this.energy = 0;
         } else {
             this.lastHit = new Date().getTime();
+        }
+    }
+
+    /**
+    * Collection coins
+    */
+    toCollectCoins() {
+        this.collectionCoins += 10;
+        if (this.collectionCoins > 100) {
+            this.collectionCoins = 100;
+        } else {
+            this.lastCollectionCoins = new Date().getTime();
+        }
+    }
+
+    /**
+    * Collection Bottles
+    */
+    toCollectBottles() {
+        this.collectionBottles += 10;
+        if (this.collectionBottles > 100) {
+            this.collectionBottles = 100;
+        } else {
+            this.lastCollectionBottels = new Date().getTime();
         }
     }
 
