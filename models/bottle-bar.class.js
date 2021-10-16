@@ -36,15 +36,15 @@ class Bottlebar extends DrawableObject {
      * Returns the number of the picture depending on the conditions.
      */
     resolveImageIndex() {
-        if (this.percentage == 100) {
+        if (this.percentage >= 9) {
             return 5;
-        } else if (this.percentage > 80) {
+        } else if (this.percentage >= 7) {
             return 4;
-        } else if (this.percentage > 60) {
+        } else if (this.percentage >= 5) {
             return 3;
-        } else if (this.percentage > 40) {
+        } else if (this.percentage >= 3) {
             return 2;
-        } else if (this.percentage > 20) {
+        } else if (this.percentage >= 1) {
             return 1;
         } else {
             return 0;

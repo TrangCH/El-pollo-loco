@@ -48,11 +48,11 @@ class World {
      * This function tests whether button D is pressed and, if necessary, indicates that a bottle has been thrown.
      */
     checkThrowObjects() {
-        if (this.keyboard.D && this.character.collectionBottles > 10) { 
-            this.character.collectionBottles -= 10; // löschen
+        if (this.keyboard.D && this.character.collectionBottles >= 1) { 
+            this.character.collectionBottles -= 1; // löschen
             let bottle = new ThrowableObject(this.character.x + 70, this.character.y + 70); // Von Koordinate (x, y) character
             this.throwableObjects.push(bottle); // Füge neuen bottel hinzu
-            this.bottlebar.setPercentage(this.character.collectionBottles);
+            this.bottlebar.setPercentage(this.character.collectionBottles); // bottelbar aktualisieren
         }
     }
 

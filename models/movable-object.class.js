@@ -76,9 +76,9 @@ class MovableObject extends DrawableObject { // template
     * Collection Bottles
     */
     toCollectBottles() {
-        this.collectionBottles += 10;
-        if (this.collectionBottles > 100) {
-            this.collectionBottles = 100;
+        this.collectionBottles += 1;
+        if (this.collectionBottles > 10) {
+            this.collectionBottles = 10;
         } else {
             this.lastCollectionBottels = new Date().getTime();
         }
