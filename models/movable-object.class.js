@@ -1,6 +1,7 @@
 class MovableObject extends DrawableObject { // template
 
     speed = 0.1;
+
     otherDirection = false; // false, weil standardmäßig sollte kein Bild gespiegelt sein
     speedY = 0; // speed in y-Richtung
     acceleration = 2.5; // Beschleunigung (vereinfachte Gravitationskraft)#
@@ -25,7 +26,9 @@ class MovableObject extends DrawableObject { // template
         }, 1000 / 25); // 25x pro Sekunde
     }
 
-
+    /**
+     * Applies to all objects that are above the surface of the earth.
+     */
     isAboveGround() {
         // Throwable object should always fall
         if (this instanceof ThrowableObject) {

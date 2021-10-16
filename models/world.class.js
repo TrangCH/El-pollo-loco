@@ -13,7 +13,7 @@ class World {
     endbossbar = new Endbossbar();
     throwableObjects = [];
 
-
+    
     /**
      * This function is always there. In every class. It is always called first of all.
      */
@@ -48,10 +48,11 @@ class World {
      * This function tests whether button D is pressed and, if necessary, indicates that a bottle has been thrown.
      */
     checkThrowObjects() {
-        if (this.keyboard.D) { // && collectionBottles > 10
-            // collectionBottles -= 10;
+        if (this.keyboard.D && this.character.collectionBottles > 10) { 
+            this.character.collectionBottles -= 10; // löschen
             let bottle = new ThrowableObject(this.character.x + 70, this.character.y + 70); // Von Koordinate (x, y) character
             this.throwableObjects.push(bottle); // Füge neuen bottel hinzu
+            this.bottlebar.setPercentage(this.character.collectionBottles);
         }
     }
 

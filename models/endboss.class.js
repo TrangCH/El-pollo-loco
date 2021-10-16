@@ -44,7 +44,7 @@ class Endboss extends MovableObject {
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_ATTACK);
         this.loadImages(this.IMAGES_DEAD);
-        this.x = 500; // 2500
+        this.x = 2500; // 2500
         this.speed = 0.1 + Math.random() * 0.25;
         this.animate();
     }
@@ -64,7 +64,7 @@ class Endboss extends MovableObject {
                 this.playAnimation(this.IMAGES_DEAD);
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
-            } else if (this.level.character && this.isColliding(this.world.character)) {
+            } else if (this.world.character && this.isColliding(this.world.character)) {  
                 this.playAnimation(this.IMAGES_ATTACK);
             }
         }, 300); // 50
