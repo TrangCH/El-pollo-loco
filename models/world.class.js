@@ -13,7 +13,7 @@ class World {
     endbossbar = new Endbossbar();
     throwableObjects = [];
 
-    
+
     /**
      * This function is always there. In every class. It is always called first of all.
      */
@@ -48,12 +48,30 @@ class World {
      * This function tests whether button D is pressed and, if necessary, indicates that a bottle has been thrown.
      */
     checkThrowObjects() {
-        if (this.keyboard.D && this.character.collectionBottles >= 1) { 
+        if (this.keyboard.D && this.character.collectionBottles >= 1) {
             this.character.collectionBottles -= 1; // löschen
             let bottle = new ThrowableObject(this.character.x + 70, this.character.y + 70); // Von Koordinate (x, y) character
             this.throwableObjects.push(bottle); // Füge neuen bottel hinzu
             this.bottlebar.setPercentage(this.character.collectionBottles); // bottelbar aktualisieren
         }
+        this.checkCollisionThrowableObjectsWithEndboss();
+    }
+
+    /**
+     * This function checks whether a bottle collides with the final boss.
+     */    
+    checkCollisionThrowableObjectsWithEndboss() {
+        this.throwableObjects.forEach( (throwableObject) => {
+            let endboss = this.level.enemies[this.level.enemies.length - 1];
+            if (!endboss.isDead()) { // Wenn Endboss nicht Tod ist, dann soll Folgendes passieren:
+                // Wenn throwableObject mit dem Endboss kollidiert:
+                if (throwableObject.isColliding(endboss)) {
+                    endboss.hit(); // Der Endboss bekommt Verletzungen.
+                    // Energieleiste vom Endboss soll aktualisiert werden.
+                    this.endbossbar.setPercentage(endboss.energy); 
+                }
+            }
+        })
     }
 
     /**
@@ -88,9 +106,9 @@ class World {
         // forEach: kontrolliere für jeden einzelnen Gegner, ob meine Gegner mit meinem character kollidieren.
         this.level.coins.forEach((coin) => {
             if (this.character.isColliding(coin)) {
-                this.character.toCollectCoins(); 
+                this.character.toCollectCoins();
                 // Die indexOf() Methode gibt den Index der Zeichenkette innerhalb des aufrufenden String Objekts des ersten Vorkommnis des angegebenen Wertes beginnend bei fromIndex zurück. Gibt -1 zurück, wenn der Wert nicht gefunden wurde.
-                let position = this.level.coins.indexOf(coin); 
+                let position = this.level.coins.indexOf(coin);
                 this.level.coins.splice(position, 1);
                 //this.character.deleteCoinAfterCollision();
                 this.coinbar.setPercentage(this.character.collectionCoins);
@@ -98,15 +116,15 @@ class World {
         });
     }
 
-     /**
-     * This function tests whether a collision with another object is taking place or not.
-     */
-      checkCollisionsBottles() {
+    /**
+    * This function tests whether a collision with another object is taking place or not.
+    */
+    checkCollisionsBottles() {
         // Um alle meine Gegner zu kriegen.
         // forEach: kontrolliere für jeden einzelnen Gegner, ob meine Gegner mit meinem character kollidieren.
         this.level.bottles.forEach((bottle) => {
             if (this.character.isColliding(bottle)) {
-                this.character.toCollectBottles(); 
+                this.character.toCollectBottles();
                 // Die indexOf() Methode gibt den Index der Zeichenkette innerhalb des aufrufenden String Objekts des ersten Vorkommnis des angegebenen Wertes beginnend bei fromIndex zurück. Gibt -1 zurück, wenn der Wert nicht gefunden wurde.
                 let position = this.level.bottles.indexOf(bottle);
                 this.level.bottles.splice(position, 1);
