@@ -3,7 +3,7 @@ class Bottles extends MovableObject {
     y = 370;
     width = 55;
     height = 70;
-    static lastBottlesXPos = 200; // Statische Variable standardmäßig am Anfang = 300;
+    static lastBottlesXPos = 100; // Statische Variable standardmäßig am Anfang = 200;
 
     /**
       * This function is always there. In every class. It is always called first of all.

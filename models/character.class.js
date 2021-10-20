@@ -3,8 +3,8 @@ class Character extends MovableObject {
     speed = 5;
     height = 250;
     y = 30;
-    
-   
+
+
     IMAGES_WALKING = [
         'img/2.Secuencias_Personaje-Pepe-corrección/2.Secuencia_caminata/W-21.png',
         'img/2.Secuencias_Personaje-Pepe-corrección/2.Secuencia_caminata/W-22.png',
@@ -93,6 +93,7 @@ class Character extends MovableObject {
         setInterval(() => {
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
+                // setTimeout(this.showGameOverScreen(), 3000);
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
             } else if (this.isAboveGround()) { // Immer, wenn er über dem Boden ist, spiele diese Animationen ab.
@@ -107,6 +108,11 @@ class Character extends MovableObject {
         }, 50); // 50
 
     }
+
+    // showGameOverScreen() {
+    //     document.getElementById('canvas').src = 'img/9.Intro _ Outro Image/_Game over_ screen/Muestra.png';
+    // }
+
 
     /**
     * to jump (CleanCoding)

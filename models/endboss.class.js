@@ -62,14 +62,25 @@ class Endboss extends MovableObject {
         setInterval(() => {
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
-                //document.getElementById('canvas').src = 'img/9.Intro _ Outro Image/_Game over_ screen/2.oh no you lost!.png';
+                // setTimeout(this.showGameOverScreen(), 3000);
+                //} else //if (this.isHurt()) {
+                // this.playAnimation(this.IMAGES_HURT);
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
-            } else if (this.world.character && this.isColliding(this.world.character)) {  
+            } else if (this.world.character && this.isColliding(this.world.character)) {
                 this.playAnimation(this.IMAGES_ATTACK);
             }
         }, 300); // 50
+        setInterval(() => {
+            if (this.isHurtEndboss()) {
+                this.playAnimation(this.IMAGES_HURT);
+            }
+        }, 5000);
 
     }
+
+    // showGameOverScreen() {
+    //     document.getElementById('canvas').src = 'img/9.Intro _ Outro Image/_Game over_ screen/Muestra.png';
+    // }
 
 }

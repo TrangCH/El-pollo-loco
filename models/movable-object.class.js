@@ -61,6 +61,18 @@ class MovableObject extends DrawableObject { // template
     }
 
     /**
+     * Damage
+     */
+     hitEndboss() {
+        this.energy -= 10;
+        if (this.energy < 0) {
+            this.energy = 0;
+        } else {
+            this.lastHit = new Date().getTime();
+        }
+    }
+
+    /**
     * Collection coins
     */
     toCollectCoins() {
@@ -92,6 +104,15 @@ class MovableObject extends DrawableObject { // template
         timepassed = timepassed / 1000; // difference in s
         return timepassed < 1; // Wenn timepassed < 1, d.h. wir wurden in den letzten 1 Sekunden getroffen.
     }
+
+     /**
+     * Zeitpunkt speichern, wo character zuletzt verletzt worden ist.
+     */
+    //   isHurtEndboss() {
+    //     let timepassed = new Date().getTime() - this.lastHit; // difference in ms
+    //     timepassed = timepassed / 1000; // difference in s
+    //     return timepassed < 7; // Wenn timepassed < 1, d.h. wir wurden in den letzten 1 Sekunden getroffen.
+    // }
 
     isDead() {
         return this.energy == 0;

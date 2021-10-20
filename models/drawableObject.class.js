@@ -3,7 +3,7 @@ class DrawableObject {
     img;
     imageCache = {}; // Bilderspeicher JSON
     currentImage = 0;
-    x = 120;
+    x = 120;// 120
     y = 280;
     width = 100;
     height = 150;

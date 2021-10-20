@@ -66,7 +66,7 @@ class World {
             if (!endboss.isDead()) { // Wenn Endboss nicht Tod ist, dann soll Folgendes passieren:
                 // Wenn throwableObject mit dem Endboss kollidiert:
                 if (throwableObject.isColliding(endboss)) {
-                    endboss.hit(); // Der Endboss bekommt Verletzungen.
+                    endboss.hitEndboss(); // Der Endboss bekommt Verletzungen.
                     // Energieleiste vom Endboss soll aktualisiert werden.
                     this.endbossbar.setPercentage(endboss.energy); 
                 }
