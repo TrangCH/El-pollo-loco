@@ -185,10 +185,13 @@ class World {
             self.draw(); // asynchrone
         });
 
-        if(this.loose) {
-            setTimeout(this.addToMap(this.youlost), 3000);
+        /**
+         * Won or lost, add "Game over" screen oder "You lost" screen
+         */
+         if(this.loose) {
+            setTimeout(this.addToMap(this.youlost), 5000);
         } else if (this.win) {
-            setTimeout(this.addToMap(this.youwin), 3000);
+            setTimeout(this.addToMap(this.youwin), 5000);
         }
 
     }
