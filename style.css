@@ -1,3 +1,7 @@
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     display: flex;
     flex-direction: column;
@@ -68,3 +72,41 @@ td {
     border-radius: 8px;
     text-align: center;
 }
+
+.how-it-goes {
+    margin-top: 12px;
+    margin-bottom: 12px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 16px;
+    padding-right: 16px;
+    background-color: rgb(102, 102, 102) !important;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.how-it-goes:hover {
+    margin-top: 12px;
+    margin-bottom: 12px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 16px;
+    padding-right: 16px;
+    background-color: rgb(151, 151, 151) !important;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 1s ease-out;
+}
+
+a {
+    text-decoration: none;
+    color: white !important;
+}
+
+a:hover {
+    text-decoration: none;
+    color: white !important;
+}
+
