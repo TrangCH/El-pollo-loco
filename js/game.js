@@ -6,6 +6,8 @@ let keyboard = new Keyboard();
  * This method accesses our canvas and binds to a variable.
  */
 function init() {
+    document.getElementById('canvas').classList.remove('d-none');
+    document.getElementById('playAgain').classList.remove('d-none');
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard); // Übergeben eine Variable canvas und keyboard an unsere Welt
 
