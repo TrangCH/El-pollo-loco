@@ -7,7 +7,7 @@ class GameOver extends MovableObject {
      * LoadImage at position (x, y)
      */
      constructor() {
-        super().loadImage('img/9.Intro _ Outro Image/_Game over_ screen/Muestra.png');
+        super().loadImage('img/9.Intro _ Outro Image/_Game over_ screen/3.Game over.png');
         this.x = 0;
         this.y = 0;
        

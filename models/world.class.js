@@ -13,6 +13,11 @@ class World {
     endbossbar = new Endbossbar();
     throwableObjects = [];
 
+    loose = false;
+    win = false;
+    youlost = new YouLost();
+    youwin = new GameOver();
+
 
     /**
      * This function is always there. In every class. It is always called first of all.
@@ -179,6 +184,12 @@ class World {
         requestAnimationFrame(function () {
             self.draw(); // asynchrone
         });
+
+        if(this.loose) {
+            setTimeout(this.addToMap(this.youlost), 3000);
+        } else if (this.win) {
+            setTimeout(this.addToMap(this.youwin), 3000);
+        }
 
     }
 
