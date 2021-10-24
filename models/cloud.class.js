@@ -11,7 +11,7 @@ class Cloud extends MovableObject {
         super().loadImage('img/5.Fondo/Capas/4.nubes/1.png');
 
 
-        this.x = 0 + Math.random() * 500; //  Math.random() liegt zwischen 0 und 1, Zahl zwischen 200 und 700
+        this.x = 100 + Math.random() * 2300; //  Math.random() liegt zwischen 0 und 1, Zahl zwischen 200 und 700
 
         this.animate();
 

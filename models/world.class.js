@@ -19,6 +19,8 @@ class World {
     youwin = new GameOver();
 
 
+
+
     /**
      * This function is always there. In every class. It is always called first of all.
      */
@@ -64,16 +66,16 @@ class World {
 
     /**
      * This function checks whether a bottle collides with the final boss.
-     */    
+     */
     checkCollisionThrowableObjectsWithEndboss() {
-        this.throwableObjects.forEach( (throwableObject) => {
+        this.throwableObjects.forEach((throwableObject) => {
             let endboss = this.level.enemies[this.level.enemies.length - 1];
             if (!endboss.isDead()) { // Wenn Endboss nicht Tod ist, dann soll Folgendes passieren:
                 // Wenn throwableObject mit dem Endboss kollidiert:
                 if (throwableObject.isColliding(endboss)) {
                     endboss.hitEndboss(); // Der Endboss bekommt Verletzungen.
                     // Energieleiste vom Endboss soll aktualisiert werden.
-                    this.endbossbar.setPercentage(endboss.energy); 
+                    this.endbossbar.setPercentage(endboss.energy);
                 }
             }
         })
@@ -91,6 +93,20 @@ class World {
                 this.statusbar.setPercentage(this.character.energy);
             }
         });
+    }
+
+    /**
+     * Checks when the game is over.
+     */
+    checkGameOver() {
+        if (this.character.isDead() || this.endboss.isDead()) {
+            setInterval(() => {
+                this.character.stopMoveTo();
+                this.character.stopPlay();
+                this.stopDrawAll(); // Muss noch gemacht werden.
+                this.stopCheckAll();// Muss noch gemacht werden.
+            }, 1000);
+        };
     }
 
     /**
@@ -177,6 +193,17 @@ class World {
         this.ctx.translate(-this.camera_x, 0); // Gesamten Kontext zurück verschieben.
 
         /**
+        * Won or lost, add "Game over" screen oder "You lost" screen
+        */
+        if (this.loose) {
+            // setTimeout(this.addToMap(this.youlost), 5000);
+            this.addToMap(this.youlost);
+        } else if (this.win) {
+            this.addToMap(this.youwin);
+            // setTimeout(this.addToMap(this.youwin), 5000);
+        }
+
+        /**
          * The draw method is called as often as the graphics card allows.
          */
         let self = this;
@@ -185,14 +212,7 @@ class World {
             self.draw(); // asynchrone
         });
 
-        /**
-         * Won or lost, add "Game over" screen oder "You lost" screen
-         */
-         if(this.loose) {
-            setTimeout(this.addToMap(this.youlost), 5000);
-        } else if (this.win) {
-            setTimeout(this.addToMap(this.youwin), 5000);
-        }
+
 
     }
 
@@ -242,5 +262,7 @@ class World {
         mo.x = mo.x * -1;
         this.ctx.restore(); // Alle Änderungen rückgängig machen.
     }
+
+
 
 }

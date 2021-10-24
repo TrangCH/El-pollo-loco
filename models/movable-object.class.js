@@ -6,12 +6,14 @@ class MovableObject extends DrawableObject { // template
     speedY = 0; // speed in y-Richtung
     acceleration = 2.5; // Beschleunigung (vereinfachte Gravitationskraft)#
     energy = 100;
+
+    lastHit = 0;
+
     collectionCoins = 0;
     collectionBottles = 0;
 
     lastCollectionCoins = 0;
     lastCollectionBottles = 0;
-    lastHit = 0;
 
     /**
      * Apply gravity to a movable object
@@ -63,13 +65,50 @@ class MovableObject extends DrawableObject { // template
     /**
      * Damage
      */
-     hitEndboss() {
+    hitEndboss() {
         this.energy -= 10;
         if (this.energy < 0) {
             this.energy = 0;
         } else {
             this.lastHit = new Date().getTime();
         }
+    }
+
+
+
+    /**
+     * Zeitpunkt speichern, wo character zuletzt verletzt worden ist.
+     */
+    isHurt() {
+        let timepassed = new Date().getTime() - this.lastHit; // difference in ms
+        timepassed = timepassed / 1000; // difference in s
+        return timepassed < 1; // Wenn timepassed < 1, d.h. wir wurden in den letzten 1 Sekunden getroffen.
+    }
+
+    /**
+    * Zeitpunkt speichern, wo character zuletzt verletzt worden ist.
+    */
+    //   isHurtEndboss() {
+    //     let timepassed = new Date().getTime() - this.lastHit; // difference in ms
+    //     timepassed = timepassed / 1000; // difference in s
+    //     return timepassed < 7; // Wenn timepassed < 1, d.h. wir wurden in den letzten 1 Sekunden getroffen.
+    // }
+
+    isDead() {
+        return this.energy == 0;
+    }
+
+    /**
+     * This is how we change an image
+     */
+    playAnimation(images) {
+        // currentImage wird fortlaufen erhöht
+        // IMAGES_WALKING.length bleibt 6 (Länge des Arrays)
+        let i = this.currentImage % images.length; // Modulo Restklassen let i = 0 & 6
+        // i = 0, 1, 2,  3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, ...
+        let path = images[i];
+        this.img = this.imageCache[path]; // setze das Bild in unserem cache // Wir wollen auf einen Eintrag aus unserem Array zugreifen. Keine Funktion.
+        this.currentImage++;
     }
 
     /**
@@ -94,41 +133,6 @@ class MovableObject extends DrawableObject { // template
         } else {
             this.lastCollectionBottels = new Date().getTime();
         }
-    }
-
-    /**
-     * Zeitpunkt speichern, wo character zuletzt verletzt worden ist.
-     */
-    isHurt() {
-        let timepassed = new Date().getTime() - this.lastHit; // difference in ms
-        timepassed = timepassed / 1000; // difference in s
-        return timepassed < 1; // Wenn timepassed < 1, d.h. wir wurden in den letzten 1 Sekunden getroffen.
-    }
-
-     /**
-     * Zeitpunkt speichern, wo character zuletzt verletzt worden ist.
-     */
-    //   isHurtEndboss() {
-    //     let timepassed = new Date().getTime() - this.lastHit; // difference in ms
-    //     timepassed = timepassed / 1000; // difference in s
-    //     return timepassed < 7; // Wenn timepassed < 1, d.h. wir wurden in den letzten 1 Sekunden getroffen.
-    // }
-
-    isDead() {
-        return this.energy == 0;
-    }
-
-    /**
-     * This is how we change an image
-     */
-    playAnimation(images) {
-        // currentImage wird fortlaufen erhöht
-        // IMAGES_WALKING.length bleibt 6 (Länge des Arrays)
-        let i = this.currentImage % images.length; // Modulo Restklassen let i = 0 & 6
-        // i = 0, 1, 2,  3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, ...
-        let path = images[i];
-        this.img = this.imageCache[path]; // setze das Bild in unserem cache // Wir wollen auf einen Eintrag aus unserem Array zugreifen. Keine Funktion.
-        this.currentImage++;
     }
 
     /**

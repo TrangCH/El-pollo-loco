@@ -3,7 +3,12 @@ class Character extends MovableObject {
     speed = 5;
     height = 250;
     y = 30;
+    //lastIdle = 0;
+    lastIdle = new Date().getTime();
+    moveToInterval;
+    playInterval;
 
+ 
 
     IMAGES_WALKING = [
         'img/2.Secuencias_Personaje-Pepe-corrección/2.Secuencia_caminata/W-21.png',
@@ -66,47 +71,91 @@ class Character extends MovableObject {
      * Switch pictures (motion)
      */
     animate() {
+        this.startMoveTo();
+        this.startPlay();
+    }
 
-        setInterval(() => {
-            // this.walking_sound.pause();
-            if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) { // Wenn die Taste rechts gedrückt wird, dann soll Folgendes passieren:
-                this.moveRight();
-                this.otherDirection = false;
-                // this.walking_sound.play();
-            }
-            // Nach links nur, wenn x größer 0
-            if (this.world.keyboard.LEFT && this.x > 0) { // Wenn die Taste rechts gedrückt wird, dann soll Folgendes passieren:
-                this.moveLeft();
-                this.otherDirection = true;
-                // this.walking_sound.play();
-            }
+    /**
+     * Start
+     */
 
-            // Wenn die Taste UP gedrückt wird, dann setze soeedY auf 20.
-            if (this.world.keyboard.SPACE && !this.isAboveGround()) { // ! bdeutet nicht
-                this.jump(); //  (CleanCoding)
-            }
+    startMoveTo() {
+        this.moveToInterval = setInterval(this.moveTo.bind(this), 1000 / 60);
+    }
 
-            this.world.camera_x = -this.x + 100; // + 100 in x-Richtung
-        }, 1000 / 60); // 60 mal pro Sekunde
+    startPlay() {
+        this.playInterval = setInterval(this.play.bind(this), 50);
+    }
 
+    /**
+     * Stop
+     */
 
-        setInterval(() => {
-            if (this.isDead()) {
-                this.playAnimation(this.IMAGES_DEAD);
+     stopMoveTo() {
+        clearInterval(this.moveToInterval);
+        //TODO
+    }
+
+    stopPlay() {
+        clearInterval(this.playInterval);
+        //TODO
+    }
+
+    //animate() {
+
+    /**
+     * Animate 
+     */
+
+    moveTo() {
+
+        //setInterval(() => {
+        // this.walking_sound.pause();
+        if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) { // Wenn die Taste rechts gedrückt wird, dann soll Folgendes passieren:
+            this.moveRight();
+            this.otherDirection = false;
+            // this.walking_sound.play();
+        }
+        // Nach links nur, wenn x größer 0
+        if (this.world.keyboard.LEFT && this.x > 0) { // Wenn die Taste rechts gedrückt wird, dann soll Folgendes passieren:
+            this.moveLeft();
+            this.otherDirection = true;
+            // this.walking_sound.play();
+        }
+
+        // Wenn die Taste UP gedrückt wird, dann setze soeedY auf 20.
+        if (this.world.keyboard.SPACE && !this.isAboveGround()) { // ! bdeutet nicht
+            this.jump(); //  (CleanCoding)
+        }
+
+        this.world.camera_x = -this.x + 100; // + 100 in x-Richtung
+        //}, 1000 / 60); // 60 mal pro Sekunde
+    }
+
+    play() {
+        // setInterval(() => {
+        if (this.isDead()) {
+            this.lastIdle = 0;
+            this.playAnimation(this.IMAGES_DEAD);
+            setInterval(() => {
                 this.world.loose = true;
-                // setTimeout(this.showGameOverScreen(), 3000);
-            } else if (this.isHurt()) {
-                this.playAnimation(this.IMAGES_HURT);
-            } else if (this.isAboveGround()) { // Immer, wenn er über dem Boden ist, spiele diese Animationen ab.
-                this.playAnimation(this.IMAGES_JUMPING);
-            } else {
-                // Ein logisches Oder  ||
-                if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) { // Wenn die Taste rechts gedrückt wird, dann soll Folgendes passieren:
-
-                    this.playAnimation(this.IMAGES_WALKING);
-                }
+            }, 200);
+            setTimeout(this.stopPlay, 3000);
+            // setTimeout(this.showGameOverScreen(), 3000);
+        } else if (this.isHurt()) {
+            this.lastIdle = 0;
+            this.playAnimation(this.IMAGES_HURT);
+        } else if (this.isAboveGround()) { // Immer, wenn er über dem Boden ist, spiele diese Animationen ab.
+            this.lastIdle = 0;
+            this.playAnimation(this.IMAGES_JUMPING);
+        } else {
+            // Ein logisches Oder  ||
+            if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) { // Wenn die Taste rechts gedrückt wird, dann soll Folgendes passieren:
+                this.lastIdle = 0;
+                this.playAnimation(this.IMAGES_WALKING);
             }
-        }, 50); // 50
+        }
+        //}, 50); // 50
 
     }
 
