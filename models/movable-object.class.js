@@ -15,6 +15,37 @@ class MovableObject extends DrawableObject { // template
     lastCollectionCoins = 0;
     lastCollectionBottles = 0;
 
+    //animate() {
+    //    this.startMoveTo();
+    //    this.startPlay();
+    //}
+
+    //startMoveTo() {
+    //    this.moveToInterval = setInterval(this.moveTo.bind(this), 1000 / 60);
+    //}
+
+    //startPlay() {
+    //    this.playInterval = setInterval(this.play.bind(this), 50);
+    //}
+
+    //stopAnimate() {
+    //    this.stopMoveTo();
+    //    this.stopPlay();
+    //}
+
+    
+    //stopMoveTo() {
+    //    clearInterval(this.moveToInterval);
+    //    //TODO
+    //}
+
+    //stopPlay() {
+    //    this.world.loose = true;
+    //    clearInterval(this.playInterval);
+    //    //TODO
+    //}
+
+
     /**
      * Apply gravity to a movable object
      */

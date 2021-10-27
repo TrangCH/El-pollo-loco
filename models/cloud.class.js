@@ -13,17 +13,48 @@ class Cloud extends MovableObject {
 
         this.x = 100 + Math.random() * 2300; //  Math.random() liegt zwischen 0 und 1, Zahl zwischen 200 und 700
 
-        this.animate();
-
+        //this.animate();
     }
+
+    /**
+    * Switch pictures (motion)
+    */
+    animate() {
+        this.startMoveTo();
+    }
+
+    /**
+     * Start
+     */
+
+    startMoveTo() {
+        this.moveToInterval = setInterval(this.moveTo.bind(this), 60);
+    }
+
+    /**
+    * Switch pictures (motion)
+    */
+    stopAnimate() {
+        this.stopMoveTo();
+    }
+
+    /**
+     * Stop
+     */
+
+    stopMoveTo() {
+        clearInterval(this.moveToInterval);
+        //TODO
+    }
+
 
     /**
      * Animation of the moving object
      */
-    animate() {
-        setInterval(() => {
-            this.moveLeft();
-        }, 1000 / 60); // 60x per second
+    moveTo() {
+        //setInterval(() => {
+        this.moveLeft();
+        //}, 1000 / 60); // 60x per second
     }
 
 

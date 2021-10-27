@@ -1,5 +1,6 @@
 class Endboss extends MovableObject {
 
+    attack = false;
     speed = 5;
     height = 400;
     width = 275;
@@ -49,38 +50,105 @@ class Endboss extends MovableObject {
         this.animate();
     }
 
+    /**
+     * Switch pictures (motion)
+     */
     animate() {
+        this.startMoveTo();
+        this.startPlay();
+    }
+
+    /**
+     * Start
+     */
+
+    startMoveTo() {
+        this.moveToInterval = setInterval(this.moveTo.bind(this), 60); // 1000 / 60
+    }
+
+    startPlay() {
+        this.playInterval = setInterval(this.play.bind(this), 300);
+        //this.playIntervalWalking = setInterval(this.playWalking.bind(this), 150);
+    }
+
+    /**
+    * Switch pictures (motion)
+    */
+    stopAnimate() {
+        this.stopMoveTo();
+        this.stopPlay();
+    }
+    /**
+     * Stop
+     */
+
+    stopMoveTo() {
+        clearInterval(this.moveToInterval);
+        //TODO
+    }
+
+    stopPlay() {
+        this.world.win = true;
+        clearInterval(this.playInterval);
+        //clearInterval(this.playIntervalWalking);
+        //TODO
+    }
+
+    //-----------//
+
+    /**
+     * Move to the
+     */
+    moveTo() {
         // 60 frames per second move to the left (chicken)
-        setInterval(() => {
-            this.moveLeft();
-        }, 1000 / 60); // 60x per second
+        this.moveLeft();
+        // 60x per second
+    }
 
-        setInterval(() => {
-            this.playAnimation(this.IMAGES_WALKING);
-        }, 150);
+    /**
+     * Play walking animation
+     */
+    //playWalking() {
+        //setInterval(() => {
+      //      this.playAnimation(this.IMAGES_WALKING);
+        //}, 150); 
+    //}
 
-        setInterval(() => {
+    /**
+     * Play animation
+     */
+    play() {
+        this.playAnimation(this.IMAGES_WALKING);
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
-                setInterval(() => {
-                    this.world.win = true;
-                }, 200);
+                setTimeout(this.stopAnimate(), 5000);
+                setTimeout(this.world.character.stopAnimate(), 5000);
+                for (let i = 0; i < this.world.level.clouds.length; i++) {
+                    const clouds = this.world.level.clouds[i];
+                    setTimeout(this.world.level.clouds[i].stopAnimate(), 5000);
+                }
+                for (let i = 0; i < this.world.level.enemies.length; i++) {
+                    const enemies = this.world.level.enemies[i];
+                    setTimeout(this.world.level.enemies[i].stopAnimate(), 5000);
+                }
+
                 // setTimeout(this.showGameOverScreen(), 3000);
                 //} else //if (this.isHurt()) {
                 // this.playAnimation(this.IMAGES_HURT);
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
-            } else if (this.world.character && this.isColliding(this.world.character)) {
+            } else if (this.attack) {
                 this.playAnimation(this.IMAGES_ATTACK);
             }
-        }, 300); // 50
+     // 300
         // setInterval(() => {
         //     if (this.isHurtEndboss()) {
         //         this.playAnimation(this.IMAGES_HURT);
         //     }
         // }, 5000);
-
     }
+
+
 
     // showGameOverScreen() {
     //     document.getElementById('canvas').src = 'img/9.Intro _ Outro Image/_Game over_ screen/Muestra.png';

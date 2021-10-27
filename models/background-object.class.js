@@ -4,18 +4,12 @@ class BackgroundObject extends DrawableObject {
     height = 480;
 
     /**
-     * LoadImage at position (x, y)
+     * Load image at position (x, y)
      */
     constructor(imagePath, x) { // weg: numerOfRepetition
         super().loadImage(imagePath);
+
         this.x = x;
         this.y = 480 - this.height; // 480 - 400(Höhe des Bildes)
-       
-
     }
-
-  
-
-    
-
 }

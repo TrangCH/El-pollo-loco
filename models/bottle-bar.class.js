@@ -1,7 +1,5 @@
 class Bottlebar extends DrawableObject {
 
-
-
     IMAGES = [
         'img/7.Marcadores/Barra/Marcador_botella/Azul/0_.png', // 0
         'img/7.Marcadores/Barra/Marcador_botella/Azul/20_.png',
@@ -11,10 +9,12 @@ class Bottlebar extends DrawableObject {
         'img/7.Marcadores/Barra/Marcador_botella/Azul/100_.png' // 5
     ];
 
-    percentage = 0; // Standardmäßig 100%
+    percentage = 0; // Standardmäßig = 0
 
 
-
+    /**
+     * 
+     */
     constructor() {
         super(); // Aufrufen, damit wir die Methoden von dem übergeordneten Objekt initialisieren.
         this.loadImages(this.IMAGES);
@@ -25,10 +25,15 @@ class Bottlebar extends DrawableObject {
         this.setPercentage(0);
     }
 
+
+    /**
+     * 
+     * @param {number} percentage 
+     */
     setPercentage(percentage) {
         this.percentage = percentage; // => 0 ... s
         // this.resolveImageIndex() zwischen 4 und 5
-        let path = this.IMAGES[this.resolveImageIndex()]; 
+        let path = this.IMAGES[this.resolveImageIndex()];
         this.img = this.imageCache[path]; // Dadurch wird das jeweilige img angezeigt.
     }
 

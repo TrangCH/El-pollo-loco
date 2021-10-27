@@ -16,6 +16,40 @@ class Level {
         this.bottles = bottles;
         this.youlost = youlost;
         this.gameover = gameover;
+
+        //this.animateAll();
     }
+
+    //animateAll() {
+    //    this.animateCollection(this.enemies);
+    //    this.animateCollection(this.clouds);
+    //    this.animateCollection(this.coins);
+    //    this.animateCollection(this.bottles);
+    //}
+
+    //animateCollection(array) {
+    //    // element = this.enemies, this.clouds, this.coins, this.bottles
+    //    array.forEach(element => {
+    //        element.animate();
+    //    });
+    //}
+
+    //stopAnimateAll() {
+    //    this.stopAnimateCollection(this.enemies);
+    //    this.stopAnimateCollection(this.clouds);
+    //    this.stopAnimateCollection(this.coins);
+    //    this.stopAnimateCollection(this.bottles);
+   // //}
+
+    //stopAnimateCollection() {
+    //    // element = this.enemies, this.clouds, this.coins, this.bottles
+    //    array.forEach(element => {
+    //        element.stopAnimate();
+    //    });
+    //}
+
+    
+
+
 
 }

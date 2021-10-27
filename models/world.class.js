@@ -2,10 +2,9 @@ class World {
 
     // You no longer need a let within a class, a const or a var.
     character = new Character();
-    level = level1;
+    level = getLevel1();
     ctx;
-    canvas;
-    keyboard;
+    keyboard = new Keyboard();
     camera_x = 0; // Wir wollen es nach rechts verschieben.
     statusbar = new Statusbar();
     coinbar = new Coinbar();
@@ -19,19 +18,14 @@ class World {
     youwin = new GameOver();
 
 
-
-
     /**
      * This function is always there. In every class. It is always called first of all.
      */
-    constructor(canvas, keyboard) {
+    constructor() {
         this.ctx = canvas.getContext('2d');
-        this.canvas = canvas;     // Greifen auf globale Variable zu. Das rechte canvas wird in das linke reingeschrieben.
-        this.keyboard = keyboard;
-        this.draw();
+        this.canvas = document.getElementById('canvas');     // Greifen auf globale Variable zu. Das rechte canvas wird in das linke reingeschrieben.
         this.setWorld();
         this.run();
-        this.collect();
     }
 
     setWorld() {
@@ -44,10 +38,73 @@ class World {
      * It should regularly check whether two objects collide with each other or not.
      */
     run() {
-        setInterval(() => {
-            this.checkCollisions();
-            this.checkThrowObjects();
-        }, 200);
+        // Festgelegte Methoden
+        this.character.animate();
+        this.cloudsAnimate();
+        this.enemiesAnimate();
+        //this.level.enemies[this.level.enemies.length].animate();
+        this.checkWorldInterval = setInterval(this.checkWorld.bind(this), 200); // Wir müssen es in eine Variable speichern.
+        this.requestDraw = requestAnimationFrame(this.draw.bind(this));
+    }
+
+    cloudsAnimate() {
+        this.level.clouds.forEach((cloud) => {
+            cloud.animate();
+        });
+    }
+
+    enemiesAnimate() {
+        this.level.enemies.forEach((enemy) => {
+            if (enemy instanceof Chicken) {
+                enemy.animate();
+            }
+        });
+    }
+
+    /**
+     * Stop intervals and animation frames
+     */
+    stop() {
+        this.character.stopAnimate();
+        this.cloudsStopAnimate();
+        this.enemiesStopAnimate();
+        // Festgelegte Methoden. Es wird nicht mehr gemalt. Das letzte Bild bleibt.
+        clearInterval(this.checkWorldInterval);
+        cancelAnimationFrame(this.requestDraw);
+    }
+
+    cloudsStopAnimate() {
+        this.level.clouds.forEach((cloud) => {
+            cloud.stopAnimate();
+        });
+    }
+
+    enemiesStopAnimate() {
+        this.level.enemies.forEach((enemy) => {
+            if (enemy instanceof Chicken) {
+                enemy.stopAnimate();
+            }
+        });
+    }
+
+    /**
+     * Checks in the world
+     * wird immer wieder ausgeführt (siehe run() ), alle 200 Millisekunden
+     */
+    checkWorld() {
+        this.checkGameOver();
+        this.checkCollisions();
+        this.checkThrowObjects();
+    }
+
+    /**
+     * Check collisions 
+     */
+    checkCollisions() {
+        this.checkCollisionsEnemies();
+        this.checkCollisionsCoins();
+        this.checkCollisionsBottles();
+        this.checkCollisionThrowableObjectsWithEndboss();
     }
 
 
@@ -61,7 +118,6 @@ class World {
             this.throwableObjects.push(bottle); // Füge neuen bottel hinzu
             this.bottlebar.setPercentage(this.character.collectionBottles); // bottelbar aktualisieren
         }
-        this.checkCollisionThrowableObjectsWithEndboss();
     }
 
     /**
@@ -84,13 +140,20 @@ class World {
     /**
      * This function tests whether a collision with another object is taking place or not.
      */
-    checkCollisions() {
+    checkCollisionsEnemies() {
         // Um alle meine Gegner zu kriegen.
         // forEach: kontrolliere für jeden einzelnen Gegner, ob meine Gegner mit meinem character kollidieren.
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
                 this.character.hit();
                 this.statusbar.setPercentage(this.character.energy);
+                if (enemy instanceof Endboss) {
+                    enemy.attack = true;
+                }
+            } else {
+                if (enemy instanceof Endboss) {
+                    enemy.attack = false;
+                }
             }
         });
     }
@@ -99,24 +162,10 @@ class World {
      * Checks when the game is over.
      */
     checkGameOver() {
-        if (this.character.isDead() || this.endboss.isDead()) {
-            setInterval(() => {
-                this.character.stopMoveTo();
-                this.character.stopPlay();
-                this.stopDrawAll(); // Muss noch gemacht werden.
-                this.stopCheckAll();// Muss noch gemacht werden.
-            }, 1000);
+        if (this.character.isDead() || this.level.enemies[this.level.enemies.length - 1].isDead()) { // || this... = Endboss
+            this.character.stopAnimate();
+            this.level.enemies[this.level.enemies.length - 1].stopAnimate(); // = Endboss.stopAnimate()
         };
-    }
-
-    /**
-    * It should regularly check whether two objects collide with each other or not.
-    */
-    collect() {
-        setInterval(() => {
-            this.checkCollisionsCoins();
-            this.checkCollisionsBottles();
-        }, 200);
     }
 
     /**
@@ -206,11 +255,9 @@ class World {
         /**
          * The draw method is called as often as the graphics card allows.
          */
-        let self = this;
+
         // This function will only be carried out when all functions above have been carried out.
-        requestAnimationFrame(function () {
-            self.draw(); // asynchrone
-        });
+        this.requestDraw = requestAnimationFrame(this.draw.bind(this));
 
 
 

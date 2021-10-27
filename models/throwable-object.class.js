@@ -15,9 +15,39 @@ class ThrowableObject extends MovableObject {
         this.height = 70;
         this.width = 55;
         this.throw();
-        this.animate();
+        this.play();
+        //this.animate();
     }
 
+    animate() {
+        this.startMoveTo();
+        this.startPlay();
+    }
+
+    startMoveTo() {
+        this.moveToInterval = setInterval(this.moveTo.bind(this), 25);
+    }
+    startPlay() {
+        this.playInterval = setInterval(this.play.bind(this), 150);
+    }
+
+    stopAnimate() {
+        this.stopMoveTo();
+        this.stopPlay();
+    }
+
+    stopMoveTo() {
+        clearInterval(this.moveToInterval);
+        //TODO
+    }
+    stopPlay() {
+        clearInterval(this.playInterval);
+        //TODO
+    }
+
+    moveTo() {
+        this.throw();
+    }
 
     throw() {
         this.speedY = 25; // 30
@@ -27,9 +57,15 @@ class ThrowableObject extends MovableObject {
         }, 25);
     }
 
-    animate() {
+
+
+    //throwX() {
+    //    this.x += 8; // 10
+    //}
+
+    play() {
         setInterval(() => {
-           this.playAnimation(this.IMAGES_FLYING);
+            this.playAnimation(this.IMAGES_FLYING);
         }, 150); // 50
     }
 }
