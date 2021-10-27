@@ -142,9 +142,10 @@ class Character extends MovableObject {
             this.lastIdle = 0;
             this.playAnimation(this.IMAGES_DEAD);
 
-            setTimeout(this.stopAnimate(), 5000);
-            this.stopAnimateForAllClouds();
-            this.stopAnimateForAllEnemies();
+            //setTimeout(this.stopAnimate(), 5000);
+            //this.stopAnimateForAllClouds();
+            //this.stopAnimateForAllEnemies();
+            
             //for (let i = 0; i < this.world.throwableObjects.length; i++) {
             //    const throwableObject = this.world.throwableObjects[i];
             //    setTimeout(this.world.throwableObjects[i].stopAnimate(), 5000);

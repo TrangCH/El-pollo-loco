@@ -163,9 +163,24 @@ class World {
      */
     checkGameOver() {
         if (this.character.isDead() || this.level.enemies[this.level.enemies.length - 1].isDead()) { // || this... = Endboss
-            this.character.stopAnimate();
-            this.level.enemies[this.level.enemies.length - 1].stopAnimate(); // = Endboss.stopAnimate()
+            //this.character.stopAnimate();
+            //this.level.enemies[this.level.enemies.length - 1].stopAnimate(); // = Endboss.stopAnimate()
+            this.stop();
+            this.showGameOverScreen();
         };
+    }
+
+    /**
+    * Won or lost, add "Game over" screen oder "You lost" screen
+    */
+    showGameOverScreen() {
+        if (this.loose) {
+            // setTimeout(this.addToMap(this.youlost), 5000);
+            this.addToMap(this.youlost);
+        } else if (this.win) {
+            this.addToMap(this.youwin);
+            // setTimeout(this.addToMap(this.youwin), 5000);
+        }
     }
 
     /**
@@ -231,7 +246,6 @@ class World {
         this.addToMap(this.bottlebar);
         this.ctx.translate(this.camera_x, 0); // Gesamten Kontext verschieben. Forwards
 
-
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.bottles);
@@ -242,30 +256,16 @@ class World {
         this.ctx.translate(-this.camera_x, 0); // Gesamten Kontext zurück verschieben.
 
         /**
-        * Won or lost, add "Game over" screen oder "You lost" screen
-        */
-        if (this.loose) {
-            // setTimeout(this.addToMap(this.youlost), 5000);
-            this.addToMap(this.youlost);
-        } else if (this.win) {
-            this.addToMap(this.youwin);
-            // setTimeout(this.addToMap(this.youwin), 5000);
-        }
-
-        /**
          * The draw method is called as often as the graphics card allows.
          */
 
         // This function will only be carried out when all functions above have been carried out.
         this.requestDraw = requestAnimationFrame(this.draw.bind(this));
-
-
-
     }
 
     /**
       * To add multiple objects
-      * @param {} objects 
+      * @param {string} objects 
       */
     // addTo, eine forEach-Schleife für mehrere
     addObjectsToMap(objects) { // mehrere Objects (Name der Objektgruppe)

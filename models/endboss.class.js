@@ -5,6 +5,8 @@ class Endboss extends MovableObject {
     height = 400;
     width = 275;
     y = 55;
+    world;
+
     IMAGES_WALKING = [
         'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/1.Caminata/G1.png',
         'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/1.Caminata/G2.png',
@@ -35,8 +37,6 @@ class Endboss extends MovableObject {
         'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/4.Muerte/G25.png',
         'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/4.Muerte/G26.png'
     ];
-
-    world;
 
 
     constructor() {
@@ -78,6 +78,7 @@ class Endboss extends MovableObject {
         this.stopMoveTo();
         this.stopPlay();
     }
+
     /**
      * Stop
      */
@@ -106,49 +107,18 @@ class Endboss extends MovableObject {
     }
 
     /**
-     * Play walking animation
-     */
-    //playWalking() {
-        //setInterval(() => {
-      //      this.playAnimation(this.IMAGES_WALKING);
-        //}, 150); 
-    //}
-
-    /**
      * Play animation
      */
     play() {
         this.playAnimation(this.IMAGES_WALKING);
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
-                setTimeout(this.stopAnimate(), 5000);
-                setTimeout(this.world.character.stopAnimate(), 5000);
-                for (let i = 0; i < this.world.level.clouds.length; i++) {
-                    const clouds = this.world.level.clouds[i];
-                    setTimeout(this.world.level.clouds[i].stopAnimate(), 5000);
-                }
-                for (let i = 0; i < this.world.level.enemies.length; i++) {
-                    const enemies = this.world.level.enemies[i];
-                    setTimeout(this.world.level.enemies[i].stopAnimate(), 5000);
-                }
-
-                // setTimeout(this.showGameOverScreen(), 3000);
-                //} else //if (this.isHurt()) {
-                // this.playAnimation(this.IMAGES_HURT);
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
             } else if (this.attack) {
                 this.playAnimation(this.IMAGES_ATTACK);
             }
-     // 300
-        // setInterval(() => {
-        //     if (this.isHurtEndboss()) {
-        //         this.playAnimation(this.IMAGES_HURT);
-        //     }
-        // }, 5000);
     }
-
-
 
     // showGameOverScreen() {
     //     document.getElementById('canvas').src = 'img/9.Intro _ Outro Image/_Game over_ screen/Muestra.png';
