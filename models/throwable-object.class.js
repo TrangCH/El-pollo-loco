@@ -57,15 +57,10 @@ class ThrowableObject extends MovableObject {
         }, 25);
     }
 
-
-
-    //throwX() {
-    //    this.x += 8; // 10
-    //}
-
     play() {
         setInterval(() => {
             this.playAnimation(this.IMAGES_FLYING);
         }, 150); // 50
     }
+    
 }

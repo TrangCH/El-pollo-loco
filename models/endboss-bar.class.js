@@ -49,4 +49,5 @@ class Endbossbar extends DrawableObject {
             return 0;
         }
     }
+    
 }

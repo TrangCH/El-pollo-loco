@@ -8,8 +8,6 @@ class DrawableObject {
     width = 100;
     height = 150;
 
-
-
     /**
     * This function loads the image.
     * @param {string} path source
@@ -51,9 +49,6 @@ class DrawableObject {
             img.src = path; // Laden wir das Bild in dieses Image-Objekt hinein.
             this.imageCache[path] = img; // siehe imageCache oben // update imageCache // img muss reingeladen werden
         });
-
     }
-
-
-
+    
 }

@@ -180,5 +180,4 @@ class MovableObject extends DrawableObject { // template
         this.x -= this.speed; // Um x Pixel pro Sekunde nach rechts.
     }
 
-
 }

@@ -13,8 +13,6 @@ class Coinbar extends DrawableObject {
 
     percentage = 0; // Standardmäßig 100%
 
-
-
     constructor() {
         super(); // Aufrufen, damit wir die Methoden von dem übergeordneten Objekt initialisieren.
         this.loadImages(this.IMAGES);
@@ -50,4 +48,5 @@ class Coinbar extends DrawableObject {
             return 0;
         }
     }
+    
 }

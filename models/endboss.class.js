@@ -120,8 +120,4 @@ class Endboss extends MovableObject {
             }
     }
 
-    // showGameOverScreen() {
-    //     document.getElementById('canvas').src = 'img/9.Intro _ Outro Image/_Game over_ screen/Muestra.png';
-    // }
-
 }

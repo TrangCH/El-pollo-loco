@@ -55,4 +55,5 @@ class Bottlebar extends DrawableObject {
             return 0;
         }
     }
+    
 }

@@ -175,11 +175,11 @@ class World {
     */
     showGameOverScreen() {
         if (this.loose) {
-            // setTimeout(this.addToMap(this.youlost), 5000);
+            //document.getElementById('canvas').innerHTML = '';
+            //document.getElementById('innerCanvas').src = './img/9.Intro _ Outro Image/_Game over_ screen/1.you lost.png';
             this.addToMap(this.youlost);
         } else if (this.win) {
             this.addToMap(this.youwin);
-            // setTimeout(this.addToMap(this.youwin), 5000);
         }
     }
 
@@ -217,8 +217,6 @@ class World {
             }
         });
     }
-
-
 
     /**
      * To draw a picture
@@ -274,7 +272,6 @@ class World {
         });
     }
 
-
     /**
      * To add an object to mao
      * @param {string} mo MovableObject
@@ -309,7 +306,5 @@ class World {
         mo.x = mo.x * -1;
         this.ctx.restore(); // Alle Änderungen rückgängig machen.
     }
-
-
-
+    
 }

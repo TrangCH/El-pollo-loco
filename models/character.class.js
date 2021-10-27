@@ -3,8 +3,7 @@ class Character extends MovableObject {
     speed = 5;
     height = 250;
     y = 30;
-    //lastIdle = 0;
-    lastIdle = new Date().getTime();
+    //lastIdle = new Date().getTime();
     moveToInterval;
     playInterval;
 
@@ -112,26 +111,35 @@ class Character extends MovableObject {
      * Move to the...
      */
     moveTo() {
+        this.moveToTheRight();
+        this.moveToTheLeft();
+        this.jumpIfThisIsAboveGround();
+        this.world.camera_x = -this.x + 100; // + 100 in x-Richtung
+    }
 
+    moveToTheRight() {
         // this.walking_sound.pause();
         if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) { // Wenn die Taste rechts gedrückt wird, dann soll Folgendes passieren:
             this.moveRight();
             this.otherDirection = false;
             // this.walking_sound.play();
         }
-        // Nach links nur, wenn x größer 0
-        if (this.world.keyboard.LEFT && this.x > 0) { // Wenn die Taste links gedrückt wird, dann soll Folgendes passieren:
+    }
+
+    moveToTheLeft() {
+         // Nach links nur, wenn x größer 0
+         if (this.world.keyboard.LEFT && this.x > 0) { // Wenn die Taste links gedrückt wird, dann soll Folgendes passieren:
             this.moveLeft();
             this.otherDirection = true;
             // this.walking_sound.play();
         }
+    }
 
+    jumpIfThisIsAboveGround() {
         // Wenn die Taste UP gedrückt wird, dann setze speedY auf 30.
         if (this.world.keyboard.SPACE && !this.isAboveGround()) { // ! bdeutet nicht
             this.jump(); //  (CleanCoding)
         }
-
-        this.world.camera_x = -this.x + 100; // + 100 in x-Richtung
     }
 
     /**
@@ -139,51 +147,18 @@ class Character extends MovableObject {
      */
     play() {
         if (this.isDead()) {
-            this.lastIdle = 0;
             this.playAnimation(this.IMAGES_DEAD);
-
-            //setTimeout(this.stopAnimate(), 5000);
-            //this.stopAnimateForAllClouds();
-            //this.stopAnimateForAllEnemies();
-            
-            //for (let i = 0; i < this.world.throwableObjects.length; i++) {
-            //    const throwableObject = this.world.throwableObjects[i];
-            //    setTimeout(this.world.throwableObjects[i].stopAnimate(), 5000);
-            //}
-           
         } else if (this.isHurt()) {
-            this.lastIdle = 0;
             this.playAnimation(this.IMAGES_HURT);
         } else if (this.isAboveGround()) { // Immer, wenn er über dem Boden ist, spiele diese Animationen ab.
-            this.lastIdle = 0;
             this.playAnimation(this.IMAGES_JUMPING);
         } else {
             // Ein logisches Oder  ||
             if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) { // Wenn die Taste rechts gedrückt wird, dann soll Folgendes passieren:
-                this.lastIdle = 0;
                 this.playAnimation(this.IMAGES_WALKING);
             }
         }
     }
-
-    // showGameOverScreen() {
-    //     document.getElementById('canvas').src = 'img/9.Intro _ Outro Image/_Game over_ screen/Muestra.png';
-    // }
-
-    stopAnimateForAllClouds() {
-        for (let i = 0; i < this.world.level.clouds.length; i++) {
-            const clouds = this.world.level.clouds[i];
-            setTimeout(this.world.level.clouds[i].stopAnimate(), 5000);
-        }
-    }
-
-    stopAnimateForAllEnemies() {
-        for (let i = 0; i < this.world.level.enemies.length; i++) {
-            const enemies = this.world.level.enemies[i];
-            setTimeout(this.world.level.enemies[i].stopAnimate(), 5000);
-        }
-    }
-
 
     /**
     * to jump (CleanCoding)
@@ -191,6 +166,5 @@ class Character extends MovableObject {
     jump() {
         this.speedY = 30;
     }
-
 
 }

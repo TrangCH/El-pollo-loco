@@ -15,10 +15,6 @@ class Coins extends MovableObject {
         this.x = Coins.lastCoinsXPos + 100 + Math.random() * 200; // 1500  Math.random() liegt zwischen 0 und 1, Zahl zwischen 200 und 700
         Coins.lastCoinsXPos = this.x;
         this.y = 360 - Math.random() * 275;
-
-      
-
     }
-
-
+    
 }

@@ -20,8 +20,6 @@ class Chicken extends MovableObject {
 
         this.x = 1250 + Math.random() * 1000; //  Math.random() liegt zwischen 0 und 1, Zahl zwischen 200 und 700
         this.speed = 0.1 + Math.random() * 1;
-
-        //this.animate();
     }
 
     /**
@@ -67,10 +65,7 @@ class Chicken extends MovableObject {
     * Move to the 
     */
     moveTo() {
-        // 60 frames per second move to the left (chicken)
-        //setInterval(() => {
         this.moveLeft();
-        //}, 1000 / 60); // 60x per second
     }
 
     /**
@@ -81,4 +76,5 @@ class Chicken extends MovableObject {
             this.playAnimation(this.IMAGES_WALKING);
         //}, 100);
     }
+    
 }
