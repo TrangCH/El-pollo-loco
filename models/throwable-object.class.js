@@ -6,16 +6,17 @@ class ThrowableObject extends MovableObject {
         'img/6.botella/Rotación/Mesa de trabajo 1 copia 5.png',
         'img/6.botella/Rotación/Mesa de trabajo 1 copia 6.png'
     ];
-  
+    world;
 
-    constructor(x, y) {
+
+    constructor(x, y, otherDirection) {
         super().loadImage('img/6.botella/Rotación/Mesa de trabajo 1 copia 3.png');
         this.loadImages(this.IMAGES_FLYING);
         this.x = x;
         this.y = y;
         this.height = 70;
         this.width = 55;
-        this.throw();
+        this.throwRight();
         this.play();
     }
 
@@ -50,10 +51,26 @@ class ThrowableObject extends MovableObject {
     }
 
     throw() {
+        //if (this.otherDirection == false) {
+            this.throwRight();
+        //} else {
+           this.throwLeft();
+        //}
+    }
+
+    throwRight() {
         this.speedY = 25; // 30
         this.applyGravity();
         setInterval(() => {
             this.x += 8; // 10
+        }, 25);
+    }
+
+    throwLeft() {
+        this.speedY = 25; // 30
+        this.applyGravity();
+        setInterval(() => {
+            this.x -= 8; // 10
         }, 25);
     }
 
@@ -62,5 +79,5 @@ class ThrowableObject extends MovableObject {
             this.playAnimation(this.IMAGES_FLYING);
         }, 150); // 50
     }
-    
+
 }

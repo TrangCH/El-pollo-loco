@@ -105,6 +105,7 @@ class World {
         this.checkCollisionsCoins();
         this.checkCollisionsBottles();
         this.checkCollisionThrowableObjectsWithEndboss();
+        this.checkCollisionThrowableObjectsWithChickens();
     }
 
 
@@ -112,9 +113,15 @@ class World {
      * This function tests whether button D is pressed and, if necessary, indicates that a bottle has been thrown.
      */
     checkThrowObjects() {
-        if (this.keyboard.D && this.character.collectionBottles >= 1) {
+        if (this.keyboard.D && this.character.collectionBottles >= 1 && this.character.otherDirection == false) {
             this.character.collectionBottles -= 1; // löschen
             let bottle = new ThrowableObject(this.character.x + 70, this.character.y + 70); // Von Koordinate (x, y) character
+            this.throwableObjects.push(bottle); // Füge neuen bottel hinzu
+            this.bottlebar.setPercentage(this.character.collectionBottles); // bottelbar aktualisieren
+        }
+        else if (this.keyboard.D && this.character.collectionBottles >= 1 && this.character.otherDirection == true) {
+            this.character.collectionBottles -= 1; // löschen
+            let bottle = new ThrowableObject(this.character.x - 30, this.character.y + 70); // Von Koordinate (x, y) character
             this.throwableObjects.push(bottle); // Füge neuen bottel hinzu
             this.bottlebar.setPercentage(this.character.collectionBottles); // bottelbar aktualisieren
         }
@@ -136,6 +143,24 @@ class World {
             }
         })
     }
+
+    /**
+     * This function checks whether a bottle collides with the chickens.
+     */
+    checkCollisionThrowableObjectsWithChickens() {
+        this.throwableObjects.forEach((throwableObject) => {
+            // if (enemy instanceof Chicken) {
+            this.level.enemies.forEach((enemy) => {
+                if (throwableObject.isColliding(enemy)) {
+                    if (enemy instanceof Chicken) {
+                        let position = this.level.enemies.indexOf(enemy);
+                        this.level.enemies.splice(position, 1);
+                    }
+                }
+            });
+        });
+    }
+
 
     /**
      * This function tests whether a collision with another object is taking place or not.
@@ -306,5 +331,5 @@ class World {
         mo.x = mo.x * -1;
         this.ctx.restore(); // Alle Änderungen rückgängig machen.
     }
-    
+
 }
