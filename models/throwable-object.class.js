@@ -6,6 +6,7 @@ class ThrowableObject extends MovableObject {
         'img/6.botella/Rotación/Mesa de trabajo 1 copia 5.png',
         'img/6.botella/Rotación/Mesa de trabajo 1 copia 6.png'
     ];
+  
 
     constructor(x, y) {
         super().loadImage('img/6.botella/Rotación/Mesa de trabajo 1 copia 3.png');
@@ -16,7 +17,6 @@ class ThrowableObject extends MovableObject {
         this.width = 55;
         this.throw();
         this.play();
-        //this.animate();
     }
 
     animate() {

@@ -71,6 +71,7 @@ td {
     background-color: red;
     border-radius: 8px;
     text-align: center;
+    cursor: pointer;
 }
 
 .how-it-goes {

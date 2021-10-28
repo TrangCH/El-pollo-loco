@@ -72,9 +72,7 @@ class Chicken extends MovableObject {
     * Switch pictures (motion)
     */
     play() {
-        //setInterval(() => {
             this.playAnimation(this.IMAGES_WALKING);
-        //}, 100);
     }
     
 }

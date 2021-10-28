@@ -45,7 +45,7 @@ class Endboss extends MovableObject {
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_ATTACK);
         this.loadImages(this.IMAGES_DEAD);
-        this.x = 2500; // 2500
+        this.x = 2700; // 2500
         this.speed = 0.1 + Math.random() * 0.25;
         this.animate();
     }
@@ -63,7 +63,7 @@ class Endboss extends MovableObject {
      */
 
     startMoveTo() {
-        this.moveToInterval = setInterval(this.moveTo.bind(this), 60); // 1000 / 60
+        this.moveToInterval = setInterval(this.moveTo.bind(this), 40); // 60
     }
 
     startPlay() {
