@@ -153,10 +153,11 @@ class World {
             this.level.enemies.forEach((enemy) => {
                 if (throwableObject.isColliding(enemy)) {
                     if (enemy instanceof Chicken) {
+                        //enemy.hitChicken();
                         // let positionChicken = this.level.enemies.indexOf(enemy);
                         // positionChicken.isDead();
-                         let position = this.level.enemies.indexOf(enemy);
-                         this.level.enemies.splice(position, 1);
+                          let position = this.level.enemies.indexOf(enemy);
+                          this.level.enemies.splice(position, 1);
                          //let position = this.level.bottles.indexOf(bottle);
                          //this.level.bottles.splice(position, 1);
                     }

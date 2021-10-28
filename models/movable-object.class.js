@@ -105,7 +105,9 @@ class MovableObject extends DrawableObject { // template
         }
     }
 
-
+    hitChicken() {
+        this.energy -= 100;
+    }
 
     /**
      * Zeitpunkt speichern, wo character zuletzt verletzt worden ist.
