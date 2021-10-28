@@ -116,14 +116,14 @@ class World {
         if (this.keyboard.D && this.character.collectionBottles >= 1 && this.character.otherDirection == false) {
             this.character.collectionBottles -= 1; // löschen
             let bottle = new ThrowableObject(this.character.x + 70, this.character.y + 70); // Von Koordinate (x, y) character
-            this.throwableObjects.push(bottle); // Füge neuen bottel hinzu
-            this.bottlebar.setPercentage(this.character.collectionBottles); // bottelbar aktualisieren
+            this.throwableObjects.push(bottle); // Füge neuen bottle hinzu
+            this.bottlebar.setPercentage(this.character.collectionBottles); // bottlebar aktualisieren
         }
         else if (this.keyboard.D && this.character.collectionBottles >= 1 && this.character.otherDirection == true) {
             this.character.collectionBottles -= 1; // löschen
             let bottle = new ThrowableObject(this.character.x - 30, this.character.y + 70); // Von Koordinate (x, y) character
-            this.throwableObjects.push(bottle); // Füge neuen bottel hinzu
-            this.bottlebar.setPercentage(this.character.collectionBottles); // bottelbar aktualisieren
+            this.throwableObjects.push(bottle); // Füge neuen bottle hinzu
+            this.bottlebar.setPercentage(this.character.collectionBottles); // bottlebar aktualisieren
         }
     }
 
@@ -153,8 +153,12 @@ class World {
             this.level.enemies.forEach((enemy) => {
                 if (throwableObject.isColliding(enemy)) {
                     if (enemy instanceof Chicken) {
-                        let position = this.level.enemies.indexOf(enemy);
-                        this.level.enemies.splice(position, 1);
+                        // let positionChicken = this.level.enemies.indexOf(enemy);
+                        // positionChicken.isDead();
+                         let position = this.level.enemies.indexOf(enemy);
+                         this.level.enemies.splice(position, 1);
+                         //let position = this.level.bottles.indexOf(bottle);
+                         //this.level.bottles.splice(position, 1);
                     }
                 }
             });
