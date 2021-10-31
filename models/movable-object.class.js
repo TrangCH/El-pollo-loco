@@ -81,6 +81,16 @@ class MovableObject extends DrawableObject { // template
             this.y < mo.y + mo.height;
     }
 
+      /**
+     * character.isColliding(chicken)
+     */
+    //    isCollidingWidthCoins(mo) {
+    //     return this.x + this.width > mo.x &&
+    //         this.y + this.height > mo.y &&
+    //         this.x < mo.x + mo.width && // + mo.width
+    //         this.y + this.offsetHeight < mo.y + mo.height;
+    // }
+
     /**
      * Damage
      */

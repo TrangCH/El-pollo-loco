@@ -177,32 +177,31 @@ class Character extends MovableObject {
     play() {
         if (this.isDead()) {
             this.lastIdle = new Date().getTime();
-            // this.lastIdle == 0;
             this.playAnimation(this.IMAGES_DEAD);
         } else if (this.isHurt()) {
             this.lastIdle = new Date().getTime();
-            // this.lastIdle == 0;
             this.playAnimation(this.IMAGES_HURT);
         } else if (this.isAboveGround()) { // Immer, wenn er über dem Boden ist, spiele diese Animationen ab.
             this.lastIdle = new Date().getTime();
-            // this.lastIdle == 0;
             this.playAnimation(this.IMAGES_JUMPING);
         } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.D) { // Wenn die Taste rechts gedrückt wird, dann soll Folgendes passieren:
-            this.lastIdle = new Date().getTime();this.lastIdle = new Date().getTime();
-            // this.lastIdle == 0;
+            this.lastIdle = new Date().getTime(); this.lastIdle = new Date().getTime();
             this.playAnimation(this.IMAGES_WALKING);
         } else {
-            //if (this.lastIdle == 0) {
-                // this.lastIdle = new Date().getTime();
-            //}
-            this.idleTime = new Date().getTime() - this.lastIdle;
-            if (this.idleTime > 3500) {
-                    this.playAnimation(this.IMAGES_SLEEPING);
-            } else {
-                this.playAnimation(this.IMAGES_STANDING);
-            }
+            this.noMovementInTheXDirectionAnimation();
         }
+    }
 
+    /**
+     * Play animation for no movement in the x direction
+     */
+    noMovementInTheXDirectionAnimation() {
+        this.idleTime = new Date().getTime() - this.lastIdle;
+        if (this.idleTime > 2500) {
+            this.playAnimation(this.IMAGES_SLEEPING);
+        } else {
+            this.playAnimation(this.IMAGES_STANDING);
+        }
     }
 
     /**

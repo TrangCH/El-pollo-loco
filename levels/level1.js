@@ -80,6 +80,14 @@ function getLevel1() {
 
             new Bottles(),
             new Bottles(),
+            new Bottles(),
+            new Bottles(),
+            new Bottles(),
+
+            new Bottles(),
+            new Bottles(),
+            new Bottles(),
+            new Bottles(),
             new Bottles()
         ],
 

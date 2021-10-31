@@ -115,7 +115,7 @@ class World {
     checkThrowObjects() {
         if (this.keyboard.D && this.character.collectionBottles >= 1) {
             this.character.collectionBottles -= 1; // löschen
-            let bottle = new ThrowableObject(this.character.x + 60, this.character.y + 70, this.character.otherDirection); // Von Koordinate (x, y) character
+            let bottle = new ThrowableObject(this.character.x + 25, this.character.y + 100, this.character.otherDirection); // Von Koordinate (x, y) character
             this.throwableObjects.push(bottle); // Füge neuen bottle hinzu
             this.bottlebar.setPercentage(this.character.collectionBottles); // bottlebar aktualisieren
         }
@@ -342,5 +342,7 @@ class World {
         mo.x = mo.x * -1;
         this.ctx.restore(); // Alle Änderungen rückgängig machen.
     }
+
+    
 
 }
