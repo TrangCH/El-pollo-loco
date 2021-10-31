@@ -2,6 +2,7 @@ class Cloud extends MovableObject {
     y = 20;
     width = 500;
     height = 300;
+    speed = Math.random() * 0.5;
 
     /**
        * This function is always there. In every class. It is always called first of all.
@@ -10,7 +11,8 @@ class Cloud extends MovableObject {
         // super(), nur bei Methoden in übergeordneten Klassen
         super().loadImage('img/5.Fondo/Capas/4.nubes/1.png');
 
-        this.x = 100 + Math.random() * 2300; //  Math.random() liegt zwischen 0 und 1, Zahl zwischen 200 und 700
+        this.x = 300 + Math.random() * 2700; //  Math.random() liegt zwischen 0 und 1, Zahl zwischen 200 und 700
+        
     }
 
     /**

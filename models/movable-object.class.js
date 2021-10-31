@@ -119,14 +119,8 @@ class MovableObject extends DrawableObject { // template
     }
 
     /**
-    * Zeitpunkt speichern, wo character zuletzt verletzt worden ist.
-    */
-    //   isHurtEndboss() {
-    //     let timepassed = new Date().getTime() - this.lastHit; // difference in ms
-    //     timepassed = timepassed / 1000; // difference in s
-    //     return timepassed < 7; // Wenn timepassed < 1, d.h. wir wurden in den letzten 1 Sekunden getroffen.
-    // }
-
+     * If this ist dead, return this.energy == 0
+     */
     isDead() {
         return this.energy == 0;
     }
@@ -157,7 +151,7 @@ class MovableObject extends DrawableObject { // template
     }
 
     /**
-    * Collection Bottles
+    * Collection bottles
     */
     toCollectBottles() {
         this.collectionBottles += 1;

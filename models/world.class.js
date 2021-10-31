@@ -113,18 +113,18 @@ class World {
      * This function tests whether button D is pressed and, if necessary, indicates that a bottle has been thrown.
      */
     checkThrowObjects() {
-        if (this.keyboard.D && this.character.collectionBottles >= 1 && this.character.otherDirection == false) {
+        if (this.keyboard.D && this.character.collectionBottles >= 1) {
             this.character.collectionBottles -= 1; // löschen
-            let bottle = new ThrowableObject(this.character.x + 70, this.character.y + 70); // Von Koordinate (x, y) character
+            let bottle = new ThrowableObject(this.character.x + 60, this.character.y + 70, this.character.otherDirection); // Von Koordinate (x, y) character
             this.throwableObjects.push(bottle); // Füge neuen bottle hinzu
             this.bottlebar.setPercentage(this.character.collectionBottles); // bottlebar aktualisieren
         }
-        else if (this.keyboard.D && this.character.collectionBottles >= 1 && this.character.otherDirection == true) {
-            this.character.collectionBottles -= 1; // löschen
-            let bottle = new ThrowableObject(this.character.x - 30, this.character.y + 70); // Von Koordinate (x, y) character
-            this.throwableObjects.push(bottle); // Füge neuen bottle hinzu
-            this.bottlebar.setPercentage(this.character.collectionBottles); // bottlebar aktualisieren
-        }
+        // else if (this.keyboard.D && this.character.collectionBottles >= 1 && this.character.otherDirection == true) {
+        //     this.character.collectionBottles -= 1; // löschen
+        //     let bottle = new ThrowableObject(this.character.x - 30, this.character.y + 70); // Von Koordinate (x, y) character
+        //     this.throwableObjects.push(bottle); // Füge neuen bottle hinzu
+        //     this.bottlebar.setPercentage(this.character.collectionBottles); // bottlebar aktualisieren
+        // }
     }
 
     /**
@@ -153,13 +153,17 @@ class World {
             this.level.enemies.forEach((enemy) => {
                 if (throwableObject.isColliding(enemy)) {
                     if (enemy instanceof Chicken) {
-                        //enemy.hitChicken();
+                        //this.hitChicken();
                         // let positionChicken = this.level.enemies.indexOf(enemy);
                         // positionChicken.isDead();
-                          let position = this.level.enemies.indexOf(enemy);
-                          this.level.enemies.splice(position, 1);
-                         //let position = this.level.bottles.indexOf(bottle);
-                         //this.level.bottles.splice(position, 1);
+                        let position = this.level.enemies.indexOf(enemy);
+                        enemy.energy = 0;
+                        setTimeout(() => {
+                            this.level.enemies.splice(position, 1)
+                        }, 1000);
+                        //this.level.enemies[position].playDead();
+                        //let position = this.level.bottles.indexOf(bottle);
+                        //this.level.bottles.splice(position, 1);
                     }
                 }
             });
@@ -196,7 +200,9 @@ class World {
             //this.character.stopAnimate();
             //this.level.enemies[this.level.enemies.length - 1].stopAnimate(); // = Endboss.stopAnimate()
             this.stop();
-            this.showGameOverScreen();
+            setTimeout(() => {
+                this.showGameOverScreen();
+            }, 1000);
         };
     }
 

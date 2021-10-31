@@ -3,10 +3,10 @@ class Character extends MovableObject {
     speed = 5;
     height = 250;
     y = 30;
-    //lastIdle = new Date().getTime();
+    idleTime; // Leerlauf
+    lastIdle = new Date().getTime();
     moveToInterval;
     playInterval;
-    otherDirection;
 
     IMAGES_WALKING = [
         'img/2.Secuencias_Personaje-Pepe-corrección/2.Secuencia_caminata/W-21.png',
@@ -48,6 +48,32 @@ class Character extends MovableObject {
         'img/2.Secuencias_Personaje-Pepe-corrección/4.Herido/H-43.png'
     ];
 
+    IMAGES_STANDING = [
+        'img/2.Secuencias_Personaje-Pepe-corrección/1.IDLE/IDLE/I-1.png',
+        'img/2.Secuencias_Personaje-Pepe-corrección/1.IDLE/IDLE/I-2.png',
+        'img/2.Secuencias_Personaje-Pepe-corrección/1.IDLE/IDLE/I-3.png',
+        'img/2.Secuencias_Personaje-Pepe-corrección/1.IDLE/IDLE/I-4.png',
+        'img/2.Secuencias_Personaje-Pepe-corrección/1.IDLE/IDLE/I-5.png',
+        'img/2.Secuencias_Personaje-Pepe-corrección/1.IDLE/IDLE/I-6.png',
+        'img/2.Secuencias_Personaje-Pepe-corrección/1.IDLE/IDLE/I-7.png',
+        'img/2.Secuencias_Personaje-Pepe-corrección/1.IDLE/IDLE/I-8.png',
+        'img/2.Secuencias_Personaje-Pepe-corrección/1.IDLE/IDLE/I-9.png',
+        'img/2.Secuencias_Personaje-Pepe-corrección/1.IDLE/IDLE/I-10.png'
+    ];
+
+    IMAGES_SLEEPING = [
+        'img/2.Secuencias_Personaje-Pepe-corrección/1.IDLE/LONG_IDLE/I-11.png',
+        'img/2.Secuencias_Personaje-Pepe-corrección/1.IDLE/LONG_IDLE/I-12.png',
+        'img/2.Secuencias_Personaje-Pepe-corrección/1.IDLE/LONG_IDLE/I-13.png',
+        'img/2.Secuencias_Personaje-Pepe-corrección/1.IDLE/LONG_IDLE/I-14.png',
+        'img/2.Secuencias_Personaje-Pepe-corrección/1.IDLE/LONG_IDLE/I-15.png',
+        'img/2.Secuencias_Personaje-Pepe-corrección/1.IDLE/LONG_IDLE/I-16.png',
+        'img/2.Secuencias_Personaje-Pepe-corrección/1.IDLE/LONG_IDLE/I-17.png',
+        'img/2.Secuencias_Personaje-Pepe-corrección/1.IDLE/LONG_IDLE/I-18.png',
+        'img/2.Secuencias_Personaje-Pepe-corrección/1.IDLE/LONG_IDLE/I-19.png',
+        'img/2.Secuencias_Personaje-Pepe-corrección/1.IDLE/LONG_IDLE/I-20.png'
+    ]
+
     world;
     // walking_sound = new Audio('audio/running.mp3');
 
@@ -60,6 +86,8 @@ class Character extends MovableObject {
         this.loadImages(this.IMAGES_JUMPING);
         this.loadImages(this.IMAGES_DEAD);
         this.loadImages(this.IMAGES_HURT);
+        this.loadImages(this.IMAGES_STANDING);
+        this.loadImages(this.IMAGES_SLEEPING);
         this.applyGravity();
         //this.animate();
     }
@@ -81,7 +109,7 @@ class Character extends MovableObject {
     }
 
     startPlay() {
-        this.playInterval = setInterval(this.play.bind(this), 50);
+        this.playInterval = setInterval(this.play.bind(this), 100); // 50
     }
 
     /**
@@ -128,8 +156,8 @@ class Character extends MovableObject {
     }
 
     moveToTheLeft() {
-         // Nach links nur, wenn x größer 0
-         if (this.world.keyboard.LEFT && this.x > 0) { // Wenn die Taste links gedrückt wird, dann soll Folgendes passieren:
+        // Nach links nur, wenn x größer 0
+        if (this.world.keyboard.LEFT && this.x > 0) { // Wenn die Taste links gedrückt wird, dann soll Folgendes passieren:
             this.moveLeft();
             this.otherDirection = true;
             // this.walking_sound.play();
@@ -148,17 +176,33 @@ class Character extends MovableObject {
      */
     play() {
         if (this.isDead()) {
+            this.lastIdle = new Date().getTime();
+            // this.lastIdle == 0;
             this.playAnimation(this.IMAGES_DEAD);
         } else if (this.isHurt()) {
+            this.lastIdle = new Date().getTime();
+            // this.lastIdle == 0;
             this.playAnimation(this.IMAGES_HURT);
         } else if (this.isAboveGround()) { // Immer, wenn er über dem Boden ist, spiele diese Animationen ab.
+            this.lastIdle = new Date().getTime();
+            // this.lastIdle == 0;
             this.playAnimation(this.IMAGES_JUMPING);
+        } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.D) { // Wenn die Taste rechts gedrückt wird, dann soll Folgendes passieren:
+            this.lastIdle = new Date().getTime();this.lastIdle = new Date().getTime();
+            // this.lastIdle == 0;
+            this.playAnimation(this.IMAGES_WALKING);
         } else {
-            // Ein logisches Oder  ||
-            if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) { // Wenn die Taste rechts gedrückt wird, dann soll Folgendes passieren:
-                this.playAnimation(this.IMAGES_WALKING);
+            //if (this.lastIdle == 0) {
+                // this.lastIdle = new Date().getTime();
+            //}
+            this.idleTime = new Date().getTime() - this.lastIdle;
+            if (this.idleTime > 3500) {
+                    this.playAnimation(this.IMAGES_SLEEPING);
+            } else {
+                this.playAnimation(this.IMAGES_STANDING);
             }
         }
+
     }
 
     /**

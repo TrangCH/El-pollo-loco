@@ -9,16 +9,17 @@ class ThrowableObject extends MovableObject {
     world;
 
 
-    constructor(x, y) {
+    constructor(x, y, otherDirection) {
         super().loadImage('img/6.botella/Rotación/Mesa de trabajo 1 copia 3.png');
         this.loadImages(this.IMAGES_FLYING);
+        this.otherDirection = otherDirection;
         this.x = x;
         this.y = y;
         this.height = 70;
         this.width = 55;
-        //this.throwDirection = throwDirection;
         this.play();
-        this.throwRight();
+        // this.throwRight();
+        this.moveTo();
     }
 
     animate() {
@@ -48,16 +49,12 @@ class ThrowableObject extends MovableObject {
     }
 
     moveTo() {
-        this.throwRight(); // -------------------------- Attention ----------- //
-    }
-
-    //throw(x) {
-    //    if(x == throwRight) {
-    //        this.throwRight();
-    //    } else {
-    //        this.throwLeft();
-    //    }
-    //}
+        if (!this.otherDirection) {
+            this.throwRight(); // -------------------------- Attention ----------- //
+        } else {
+            this.throwLeft();
+        }
+    };
 
     throwRight() {
         this.speedY = 25; // 30
@@ -67,13 +64,13 @@ class ThrowableObject extends MovableObject {
         }, 25);
     }
 
-    // throwLeft() {
-    //     this.speedY = 25; // 30
-    //     this.applyGravity();
-    //     setInterval(() => {
-    //         this.x -= 8; // 10
-    //     }, 25);
-    // }
+    throwLeft() {
+        this.speedY = 25; // 30
+        this.applyGravity();
+        setInterval(() => {
+            this.x -= 8; // 10
+        }, 25);
+    }
 
     play() {
         setInterval(() => {

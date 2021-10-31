@@ -20,6 +20,7 @@ class Chicken extends MovableObject {
         // super(), nur bei Methoden in übergeordneten Klassen
         super().loadImage('img/3.Secuencias_Enemy_básico/Versión_Gallinita (estas salen por orden de la gallina gigantona)/1.Ga_paso_derecho.png');
         this.loadImages(this.IMAGES_WALKING); // Important!
+        this.loadImages(this.IMAGES_DEAD);
 
         this.x = 1250 + Math.random() * 1000; //  Math.random() liegt zwischen 0 und 1, Zahl zwischen 200 und 700
         this.speed = 0.1 + Math.random() * 1;
@@ -68,17 +69,24 @@ class Chicken extends MovableObject {
     * Move to the 
     */
     moveTo() {
-        this.moveLeft();
+        if(!this.isDead()){
+            this.moveLeft();
+      } 
     }
 
     /**
     * Switch pictures (motion)
     */
     play() {
-        this.playAnimation(this.IMAGES_WALKING);
-         //if(this.isDead) {
-         //    this.playAnimation(this.IMAGES_DEAD);
-         //}
-    }
+        if (this.isDead()) {
+            this.playAnimation(this.IMAGES_DEAD);
+        } else {
+            this.playAnimation(this.IMAGES_WALKING);
+            // if (this.energy == 0) {
+            //     this.loadImages(this.IMAGES_DEAD);
+            // }
+        }
+    };
+   
 
 }
