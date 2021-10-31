@@ -199,23 +199,25 @@ class World {
         if (this.character.isDead() || this.level.enemies[this.level.enemies.length - 1].isDead()) { // || this... = Endboss
             //this.character.stopAnimate();
             //this.level.enemies[this.level.enemies.length - 1].stopAnimate(); // = Endboss.stopAnimate()
+            //if (this.character.collectionCoins >= 80) {
             this.stop();
             setTimeout(() => {
                 this.showGameOverScreen();
             }, 1000);
         };
+        //};
     }
 
     /**
     * Won or lost, add "Game over" screen oder "You lost" screen
     */
     showGameOverScreen() {
-        if (this.loose) {
+        if (this.win && this.character.collectionCoins == 100) {
+            this.addToMap(this.youwin);
+        } else {
             //document.getElementById('canvas').innerHTML = '';
             //document.getElementById('innerCanvas').src = './img/9.Intro _ Outro Image/_Game over_ screen/1.you lost.png';
             this.addToMap(this.youlost);
-        } else if (this.win) {
-            this.addToMap(this.youwin);
         }
     }
 
@@ -226,7 +228,7 @@ class World {
         // Um alle meine Gegner zu kriegen.
         // forEach: kontrolliere für jeden einzelnen Gegner, ob meine Gegner mit meinem character kollidieren.
         this.level.coins.forEach((coin) => {
-            if (this.character.isColliding(coin)) {
+            if (this.character.isCollidingWidthCoins(coin)) {
                 this.character.toCollectCoins();
                 // Die indexOf() Methode gibt den Index der Zeichenkette innerhalb des aufrufenden String Objekts des ersten Vorkommnis des angegebenen Wertes beginnend bei fromIndex zurück. Gibt -1 zurück, wenn der Wert nicht gefunden wurde.
                 let position = this.level.coins.indexOf(coin);
@@ -317,7 +319,7 @@ class World {
             this.flipImage(mo);
         }
         mo.draw(this.ctx);
-        mo.drawFrame(this.ctx);
+        // mo.drawFrame(this.ctx);
 
         // Alles wieder rückgängig machen, damit die nächsten Bilder nicht mehr gespiegelt sind.
         if (mo.otherDirection) { // Wenn wir unseren Kontext verändert haben, dann:
@@ -343,6 +345,6 @@ class World {
         this.ctx.restore(); // Alle Änderungen rückgängig machen.
     }
 
-    
+
 
 }

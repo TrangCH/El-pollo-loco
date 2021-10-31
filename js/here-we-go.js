@@ -3,6 +3,7 @@ function hereWeGo() {
     init();
 }
 
+
 function startScreen() {
     document.getElementById('start-screen').src = 'img/9.Intro _ Outro Image/Start Screen/Opción 1.png';
 }

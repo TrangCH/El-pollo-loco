@@ -46,7 +46,7 @@ class Endboss extends MovableObject {
         this.loadImages(this.IMAGES_ATTACK);
         this.loadImages(this.IMAGES_DEAD);
         this.x = 2700; // 2500
-        this.speed = 0.1 + Math.random() * 0.25;
+        this.speed = 0.8 + Math.random() * 0.15;
         this.animate();
     }
 
@@ -85,14 +85,11 @@ class Endboss extends MovableObject {
 
     stopMoveTo() {
         clearInterval(this.moveToInterval);
-        //TODO
     }
 
     stopPlay() {
-        this.world.win = true;
+        //this.world.win = true;
         clearInterval(this.playInterval);
-        //clearInterval(this.playIntervalWalking);
-        //TODO
     }
 
     //-----------//
@@ -112,6 +109,7 @@ class Endboss extends MovableObject {
     play() {
         this.playAnimation(this.IMAGES_WALKING);
             if (this.isDead()) {
+                this.world.win = true;
                 this.playAnimation(this.IMAGES_DEAD);
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);

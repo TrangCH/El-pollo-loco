@@ -2,6 +2,7 @@ class Character extends MovableObject {
 
     speed = 5;
     height = 250;
+    offsetHeight = 100;
     y = 30;
     idleTime; // Leerlauf
     lastIdle = new Date().getTime();
@@ -125,13 +126,11 @@ class Character extends MovableObject {
 
     stopMoveTo() {
         clearInterval(this.moveToInterval);
-        //TODO
     }
 
     stopPlay() {
-        this.world.loose = true;
+        //this.world.loose = true;
         clearInterval(this.playInterval);
-        //TODO
     }
 
     //animate() {
@@ -176,6 +175,7 @@ class Character extends MovableObject {
      */
     play() {
         if (this.isDead()) {
+            this.world.loose = true;
             this.lastIdle = new Date().getTime();
             this.playAnimation(this.IMAGES_DEAD);
         } else if (this.isHurt()) {

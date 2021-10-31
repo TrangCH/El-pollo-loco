@@ -18,7 +18,6 @@ class ThrowableObject extends MovableObject {
         this.height = 70;
         this.width = 55;
         this.play();
-        // this.throwRight();
         this.moveTo();
     }
 
@@ -50,7 +49,7 @@ class ThrowableObject extends MovableObject {
 
     moveTo() {
         if (!this.otherDirection) {
-            this.throwRight(); // -------------------------- Attention ----------- //
+            this.throwRight(); 
         } else {
             this.throwLeft();
         }

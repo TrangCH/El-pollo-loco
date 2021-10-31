@@ -15,7 +15,8 @@ class Coins extends MovableObject {
         // Mindesabstand = 100
         // this.x = Coins.lastCoinsXPos + 100 + Math.random() * 200; // 1500  Math.random() liegt zwischen 0 und 1, Zahl zwischen 200 und 700
         // Coins.lastCoinsXPos = this.x;
-        this.y = 360 - Math.random() * 275;
+        // this.y = 360 - Math.random() * 300;
+        this.y = 80 - Math.random() * 20;
         this.x = this.x + Math.random() * 2000;
     }
     

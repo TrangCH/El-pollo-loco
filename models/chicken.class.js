@@ -37,7 +37,6 @@ class Chicken extends MovableObject {
     /**
      * Start
      */
-
     startMoveTo() {
         this.moveToInterval = setInterval(this.moveTo.bind(this), 60); // 60
     }
@@ -82,11 +81,7 @@ class Chicken extends MovableObject {
             this.playAnimation(this.IMAGES_DEAD);
         } else {
             this.playAnimation(this.IMAGES_WALKING);
-            // if (this.energy == 0) {
-            //     this.loadImages(this.IMAGES_DEAD);
-            // }
         }
     };
    
-
 }

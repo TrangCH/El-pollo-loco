@@ -29,7 +29,7 @@ class DrawableObject {
    * Draw frame around movableObject
    */
     drawFrame(ctx) {
-        if (this instanceof Character || this instanceof Chicken || this instanceof Coins || this instanceof Bottles) {
+        if (this instanceof Character || this instanceof Chicken || this instanceof Coins || this instanceof Bottles || this instanceof Endboss) {
             // Blue rectangle
             ctx.beginPath();
             ctx.lineWidth = '5';

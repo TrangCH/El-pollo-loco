@@ -9,8 +9,9 @@ function init() {
     document.getElementById('canvas').classList.remove('d-none');
     document.getElementById('playAgain').classList.remove('d-none');
 
-    Bottles.lastBottlesXPos = -1500;
-    level1 = getLevel1(Bottles.lastBottlesXPos); // Wir weisen die Funktion getLevel1() der Variable level1 zu.
+    //Bottles.lastBottlesXPos = -1500;
+    //level1 = getLevel1(Bottles.lastBottlesXPos); // Wir weisen die Funktion getLevel1() der Variable level1 zu.
+    level1 = getLevel1();
     world = new World(); // Wir erstellen eine neue Welt.
 }
 

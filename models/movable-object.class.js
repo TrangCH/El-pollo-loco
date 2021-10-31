@@ -33,7 +33,7 @@ class MovableObject extends DrawableObject { // template
     //    this.stopPlay();
     //}
 
-    
+
     //stopMoveTo() {
     //    clearInterval(this.moveToInterval);
     //    //TODO
@@ -81,15 +81,15 @@ class MovableObject extends DrawableObject { // template
             this.y < mo.y + mo.height;
     }
 
-      /**
-     * character.isColliding(chicken)
-     */
-    //    isCollidingWidthCoins(mo) {
-    //     return this.x + this.width > mo.x &&
-    //         this.y + this.height > mo.y &&
-    //         this.x < mo.x + mo.width && // + mo.width
-    //         this.y + this.offsetHeight < mo.y + mo.height;
-    // }
+    /**
+    * character.isColliding(chicken)
+    */
+    isCollidingWidthCoins(mo) {
+        return this.x + this.width > mo.x &&
+            this.y + this.height > mo.y &&
+            this.x < mo.x + mo.width && // + mo.width
+            this.y + this.offsetHeight < mo.y + mo.height;
+    }
 
     /**
      * Damage
@@ -107,16 +107,12 @@ class MovableObject extends DrawableObject { // template
      * Damage
      */
     hitEndboss() {
-        this.energy -= 10;
+        this.energy -= 2.5; // 10
         if (this.energy < 0) {
             this.energy = 0;
         } else {
             this.lastHit = new Date().getTime();
         }
-    }
-
-    hitChicken() {
-        this.energy -= 100;
     }
 
     /**
