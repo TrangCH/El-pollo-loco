@@ -95,6 +95,7 @@ class World {
         this.checkGameOver();
         this.checkCollisions();
         this.checkThrowObjects();
+        //this.checkMovementEnemiesToDirectionCharacter();
     }
 
     /**
@@ -156,11 +157,12 @@ class World {
                         //this.hitChicken();
                         // let positionChicken = this.level.enemies.indexOf(enemy);
                         // positionChicken.isDead();
+
                         let position = this.level.enemies.indexOf(enemy);
                         enemy.energy = 0;
-                        setTimeout(() => {
-                            this.level.enemies.splice(position, 1)
-                        }, 1000);
+                        this.level.enemies.splice(position, 1);
+
+
                         //this.level.enemies[position].playDead();
                         //let position = this.level.bottles.indexOf(bottle);
                         //this.level.bottles.splice(position, 1);
@@ -203,7 +205,7 @@ class World {
             this.stop();
             setTimeout(() => {
                 this.showGameOverScreen();
-            }, 1000);
+            }, 500);
         };
         //};
     }
@@ -255,6 +257,19 @@ class World {
             }
         });
     }
+
+    // checkMovementEnemiesToDirectionCharacter() {
+    //     this.level.enemies.forEach((//enemy) => {
+    //         let position = this.level.enemies.indexOf(enemy);
+    //         if (this.character.x < this.level.enemies[position].x) {
+    //             this.level.enemies[position].moveLeft();
+    //         } else {
+    //             if (this.character.x > this.level.enemies[position].x) {
+    //                 this.level.enemies[position].moveRight();
+    //             };
+    //         }
+    //     });
+    // }
 
     /**
      * To draw a picture
@@ -319,7 +334,7 @@ class World {
             this.flipImage(mo);
         }
         mo.draw(this.ctx);
-        // mo.drawFrame(this.ctx);
+        mo.drawFrame(this.ctx);
 
         // Alles wieder rückgängig machen, damit die nächsten Bilder nicht mehr gespiegelt sind.
         if (mo.otherDirection) { // Wenn wir unseren Kontext verändert haben, dann:

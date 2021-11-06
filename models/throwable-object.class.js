@@ -40,11 +40,9 @@ class ThrowableObject extends MovableObject {
 
     stopMoveTo() {
         clearInterval(this.moveToInterval);
-        //TODO
     }
     stopPlay() {
         clearInterval(this.playInterval);
-        //TODO
     }
 
     moveTo() {

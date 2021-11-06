@@ -3,16 +3,17 @@ html {
 }
 
 body {
+    margin: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     font-family: 'Architects Daughter', cursive;
-    
 }
 
 canvas {
     background-color: black;
     margin-top: 32px;
+    display: block;
 }
 
 .d-none {
@@ -111,3 +112,19 @@ a:hover {
     color: white !important;
 }
 
+/* Smartphones ---------- */
+
+@media only screen and (max-width: 720px) {
+    canvas {
+        width: 100%;
+        margin-top: 0px;
+    }
+}
+
+/* Smartphones ---------- */
+
+@media only screen and (max-width: 480px) {
+    canvas {
+        height: 100vh;
+    }
+}

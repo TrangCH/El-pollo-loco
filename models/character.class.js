@@ -120,6 +120,7 @@ class Character extends MovableObject {
         this.stopMoveTo();
         this.stopPlay();
     }
+
     /**
      * Stop
      */
@@ -132,8 +133,6 @@ class Character extends MovableObject {
         //this.world.loose = true;
         clearInterval(this.playInterval);
     }
-
-    //animate() {
 
     /**
      * Move to the...

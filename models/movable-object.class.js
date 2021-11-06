@@ -77,7 +77,7 @@ class MovableObject extends DrawableObject { // template
     isColliding(mo) {
         return this.x + this.width > mo.x &&
             this.y + this.height > mo.y &&
-            this.x < mo.x + mo.width && // + mo.width
+            this.x < mo.x + mo.width && //+ mo.width
             this.y < mo.y + mo.height;
     }
 
@@ -107,7 +107,7 @@ class MovableObject extends DrawableObject { // template
      * Damage
      */
     hitEndboss() {
-        this.energy -= 2.5; // 10
+        this.energy -= 5; // 10
         if (this.energy < 0) {
             this.energy = 0;
         } else {
