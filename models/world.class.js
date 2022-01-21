@@ -153,14 +153,27 @@ class World {
             // if (enemy instanceof Chicken) {
             this.level.enemies.forEach((enemy) => {
                 if (throwableObject.isColliding(enemy)) {
+                    // console.log(Date.now());
                     if (enemy instanceof Chicken) {
                         //this.hitChicken();
                         // let positionChicken = this.level.enemies.indexOf(enemy);
                         // positionChicken.isDead();
 
-                        let position = this.level.enemies.indexOf(enemy);
                         enemy.energy = 0;
-                        this.level.enemies.splice(position, 1);
+                        let timeOfDeath = Date.now();
+                        setInterval(() => {
+                            let now = Date.now();
+                            let deathWithinTheLastSecond = now - timeOfDeath;
+                            if (deathWithinTheLastSecond >= 1000) {
+                                //enemy.energy = 0;
+                                this.level.enemies.splice(position, 1);
+        
+                        //    }
+                        //}, 100);
+
+                        //let position = this.level.enemies.indexOf(enemy);
+                        //enemy.energy = 0;
+                        //this.level.enemies.splice(position, 1);
 
 
                         //this.level.enemies[position].playDead();
