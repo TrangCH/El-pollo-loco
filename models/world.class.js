@@ -154,20 +154,24 @@ class World {
             this.level.enemies.forEach((enemy) => {
                 if (throwableObject.isColliding(enemy)) {
                     // console.log(Date.now());
-                    if (enemy instanceof Chicken) {
+                    if (enemy instanceof Chicken) {                       
                         //this.hitChicken();
                         // let positionChicken = this.level.enemies.indexOf(enemy);
                         // positionChicken.isDead();
-
+                        
                         enemy.energy = 0;
-                        let timeOfDeath = Date.now();
-                        setInterval(() => {
-                            let now = Date.now();
-                            let deathWithinTheLastSecond = now - timeOfDeath;
-                            if (deathWithinTheLastSecond >= 1000) {
-                                //enemy.energy = 0;
-                                this.level.enemies.splice(position, 1);
-        
+                        //let timeOfDeath = Date.now();
+                        setTimeout(() => {
+                            let position = this.level.enemies.indexOf(enemy);
+                            this.level.enemies.splice(position, 1);
+                        }, 1000);
+                        //let timer = setInterval(() => {
+                        //    let now = Date.now();
+                        //    let deathWithinTheLastSecond = now - timeOfDeath;
+                        //    if (deathWithinTheLastSecond > 1000) {
+                        //        //enemy.energy = 0;
+                        //        clearInterval(timer);
+                        //        this.level.enemies.splice(position, 1);
                         //    }
                         //}, 100);
 
@@ -184,6 +188,7 @@ class World {
             });
         });
     }
+
 
 
     /**
