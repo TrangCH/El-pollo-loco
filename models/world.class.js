@@ -327,7 +327,7 @@ class World {
             this.flipImage(mo);
         }
         mo.draw(this.ctx);
-        mo.drawFrame(this.ctx);
+        //mo.drawFrame(this.ctx);
 
         // Alles wieder rückgängig machen, damit die nächsten Bilder nicht mehr gespiegelt sind.
         if (mo.otherDirection) { // Wenn wir unseren Kontext verändert haben, dann:
