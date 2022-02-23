@@ -26,6 +26,8 @@ canvas {
     flex-direction: column;
     align-items: center;
     text-align: center;
+    padding-left: 8px;
+    padding-right: 8px;
 }
 
 td {
@@ -55,10 +57,11 @@ td {
 }
 
 .startScreen {
-    width: 720px;
-    height: 480px;
+    max-width: 720px;
+    max-height: 480px;
     margin-top: 32px;
     margin-bottom: 16px;
+    display: block;
 }
 
 .reload-button {
@@ -119,12 +122,21 @@ a:hover {
         width: 100%;
         margin-top: 0px;
     }
+
+    .startScreen {
+        width: 100%;
+        margin-top: 0px;
+    }
 }
 
 /* Smartphones ---------- */
 
-@media only screen and (max-width: 480px) {
+@media only screen and (max-height: 480px) {
     canvas {
         height: 100vh;
+    }
+
+    .startScreen {
+        height: 100vh !important;
     }
 }
