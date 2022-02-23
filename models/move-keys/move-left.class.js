@@ -1,7 +1,7 @@
 class Moveleft extends DrawableObject {
 
     IMAGES = [
-        './img/10.Keys/left.png', // 0
+        './img/10.Keys/left.png' // 0
     ];
 
     constructor() {

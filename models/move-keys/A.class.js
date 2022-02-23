@@ -1,7 +1,7 @@
 class A extends DrawableObject {
 
     IMAGES = [
-        './img/10.Keys/A.png', // 0
+        './img/10.Keys/A.png' // 0
     ];
 
     constructor() {

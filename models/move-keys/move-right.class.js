@@ -1,7 +1,7 @@
 class Moveright extends DrawableObject {
 
     IMAGES = [
-        './img/10.Keys/right.png', // 0
+        './img/10.Keys/right.png' // 0
     ];
 
     constructor() {
