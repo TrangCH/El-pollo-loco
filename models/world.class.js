@@ -32,6 +32,8 @@ class World {
         this.canvas = document.getElementById('canvas');     // Greifen auf globale Variable zu. Das rechte canvas wird in das linke reingeschrieben.
         this.setWorld();
         this.run();
+        console.log(this.moveLeftKey);
+        console.log(this.statusbar);
     }
 
     setWorld() {
