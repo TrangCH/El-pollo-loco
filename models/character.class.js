@@ -141,7 +141,7 @@ class Character extends MovableObject {
         this.moveToTheRight();
         this.moveToTheLeft();
         this.jumpIfThisIsAboveGround();
-        this.world.camera_x = -this.x + 100; // + 100 in x-Richtung
+        this.world.camera_x = -this.x + 150; // + 100 in x-Richtung
     }
 
     moveToTheRight() {
