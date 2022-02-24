@@ -41,7 +41,7 @@ class DrawableObject {
 
     /**
     * This function loads the images.
-    * @param {array} arr  = ['img/image1.png, 'img/image2.png', ...]
+    * @param {array} arr  = ['img/image1.png', 'img/image2.png', ...]
     */
     loadImages(arr) { // array
         arr.forEach(path => {

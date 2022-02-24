@@ -11,11 +11,6 @@ class World {
     bottlebar = new Bottlebar();
     endbossbar = new Endbossbar();
 
-    moveLeftKey = new Moveleft();
-    moveRightKey = new Moveright();
-    moveAKey = new A();
-    moveBKey = new B();
-
     throwableObjects = [];
 
     loose = false;
@@ -296,11 +291,6 @@ class World {
         this.addToMap(this.endbossbar);
         this.addToMap(this.coinbar);
         this.addToMap(this.bottlebar);
-
-        this.addToMap(this.moveLeftKey);
-        this.addToMap(this.moveRightKey);
-        this.addToMap(this.moveAKey);
-        this.addToMap(this.moveBKey);
 
         this.ctx.translate(this.camera_x, 0); // Gesamten Kontext verschieben. Forwards
 
