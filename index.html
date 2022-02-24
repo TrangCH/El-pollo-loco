@@ -45,11 +45,13 @@
 
 </head>
 
-<body onload="startScreen()">
+<body onload="init()">
+    <!--startScreen()-->
     <!--onload="init()"-->
 
 
-    <div id="begin" class="begin">
+    <div id="begin" class="begin d-none">
+        <!--d-none entfernen-->
 
         <img id="start-screen" class="startScreen" src='img/9.Intro _ Outro Image/Start Screen/Opción 1.png'>
 
@@ -105,13 +107,18 @@
 
     </div>
     <div>
-        <canvas class="canvas d-none" width="720" height="480" id="canvas">
-            <div id="innerCanvas">
-    
-            </div>
-            
-        </canvas>
+        <div class="canvas-area">
+            <canvas class="canvas d-none" width="720" height="480" id="canvas">
 
+            </canvas>
+            <div class="key-button-area">
+                <img class="left-key-button" src="img/10.Keys/left.png">
+                <img class="right-key-button" src="img/10.Keys/right.png">
+
+                <img class="a-key-button" src="img/10.Keys/A.png">
+                <img class="b-key-button" src="img/10.Keys/B.png">
+            </div>
+        </div>
         <div class="reload-button d-none" id="playAgain" onclick="hereWeGo()">
             <b>NEW START</b>
         </div>

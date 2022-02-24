@@ -10,11 +10,56 @@ body {
     font-family: 'Architects Daughter', cursive;
 }
 
+.canvas-area {
+    display: flex;
+    position: relative;
+}
+
 canvas {
     background-color: black;
     margin-top: 32px;
     display: block;
 }
+
+.key-button-area {
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin-top: 32px;
+}
+
+.left-key-button {
+    position: relative;
+    left: 50px;
+    top: 425px;
+    width: 30px;
+    height: 24px;
+}
+
+.right-key-button {
+    position: relative;
+    left: 70px;
+    top: 425px;
+    width: 30px;
+    height: 24px;
+}
+
+.a-key-button {
+    position: relative;
+    left: 500px;
+    top: 390px;
+    width: 30px;
+    height: 24px;
+}
+
+.b-key-button {
+    position: relative;
+    left: 520px;
+    top: 335px;
+    width: 30px;
+    height: 24px;
+}
+
 
 .left {
     position: absolute;
