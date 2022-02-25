@@ -6,7 +6,70 @@ class Keyboard {
     SPACE;
     D;
 
+    leftKey = document.getElementById('leftKey');
+    rightKey = document.getElementById('rightKey');
+
+    AKey = document.getElementById('AKey');
+    BKey = document.getElementById('BKey');
+
     constructor() {
+
+        /**
+         * Touchscreen: Touchstart
+         */
+
+        this.leftKey.addEventListener('touchstart', () => { // Gilt für alle Tasten.
+            // console.log(e.keyCode); // TastenCode
+            this.LEFT = true;
+            console.log(this.LEFT);
+        });
+
+        this.rightKey.addEventListener('touchstart', () => { // Gilt für alle Tasten.
+            // console.log(e.keyCode); // TastenCode
+            this.RIGHT = true;
+            console.log(this.RIGHT);
+        });
+
+        this.AKey.addEventListener('touchstart', () => { // Gilt für alle Tasten.
+            // console.log(e.keyCode); // TastenCode
+            this.SPACE = true;
+            console.log(this.SPACE);
+        });
+
+        this.BKey.addEventListener('touchstart', () => { // Gilt für alle Tasten.
+            // console.log(e.keyCode); // TastenCode
+            this.D = true;
+            console.log(this.D);
+        });
+
+        /**
+         * Touchscreen: Touchend
+         */
+
+         this.leftKey.addEventListener('touchend', () => { // Gilt für alle Tasten.
+            // console.log(e.keyCode); // TastenCode
+            this.LEFT = false;
+            console.log(this.LEFT);
+        });
+
+        this.rightKey.addEventListener('touchend', () => { // Gilt für alle Tasten.
+            // console.log(e.keyCode); // TastenCode
+            this.RIGHT = false;
+            console.log(this.RIGHT);
+        });
+
+        this.AKey.addEventListener('touchend', () => { // Gilt für alle Tasten.
+            // console.log(e.keyCode); // TastenCode
+            this.SPACE = false;
+            console.log(this.SPACE);
+        });
+
+        this.BKey.addEventListener('touchend', () => { // Gilt für alle Tasten.
+            // console.log(e.keyCode); // TastenCode
+            this.D = false;
+            console.log(this.D);
+        });
+
         /**
         * As soon as the button is pressed.
         */
