@@ -21,41 +21,43 @@ canvas {
     display: block;
 }
 
-.key-button-area {
+/*.key-button-area {
     position: absolute;
     left: 0;
     top: 0;
+    width: 720px;
+    height: 480px;
     margin-top: 32px;
-}
+}*/
 
 .left-key-button {
-    position: relative;
-    left: 50px;
-    top: 425px;
+    position: absolute;
+    left: 5%;
+    bottom: 15%;
     width: 30px;
     height: 24px;
 }
 
 .right-key-button {
-    position: relative;
-    left: 70px;
-    top: 425px;
+    position: absolute;
+    left: 15%;
+    bottom: 15%;
     width: 30px;
     height: 24px;
 }
 
 .a-key-button {
-    position: relative;
-    left: 500px;
-    top: 390px;
+    position: absolute;
+    right: 20%;
+    bottom: 15%;
     width: 30px;
     height: 24px;
 }
 
 .b-key-button {
-    position: relative;
-    left: 520px;
-    top: 335px;
+    position: absolute;
+    right: 10%;
+    bottom: 25%;
     width: 30px;
     height: 24px;
 }
@@ -216,6 +218,11 @@ a:hover {
         width: 100%;
         margin-top: 0px;
     }
+
+    .key-button-area {
+        width: 100%;
+        margin-top: 0px;
+    }
 }
 
 /* Smartphones ---------- */
@@ -227,5 +234,9 @@ a:hover {
 
     .startScreen {
         height: 100vh !important;
+    }
+
+    .key-button-area {
+        height: 100vh;
     }
 }

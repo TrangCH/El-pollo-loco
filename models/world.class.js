@@ -27,8 +27,6 @@ class World {
         this.canvas = document.getElementById('canvas');     // Greifen auf globale Variable zu. Das rechte canvas wird in das linke reingeschrieben.
         this.setWorld();
         this.run();
-        console.log(this.moveLeftKey);
-        console.log(this.statusbar);
     }
 
     setWorld() {
@@ -157,6 +155,7 @@ class World {
                 if (throwableObject.isColliding(enemy)) {
                     if (enemy instanceof Chicken) {                       
                         enemy.energy = 0;
+                        //enemy.deletable = true;
                         setTimeout(() => {
                             let position = this.level.enemies.indexOf(enemy);
                             this.level.enemies.splice(position, 1);

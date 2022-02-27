@@ -13,6 +13,8 @@ class Chicken extends MovableObject {
     ];
     energy = 100;
 
+    //deletable = false;
+
     /**
     * This function is always there. In every class. It is always called first of all.
     */
@@ -83,5 +85,18 @@ class Chicken extends MovableObject {
             this.playAnimation(this.IMAGES_WALKING);
         }
     };
+
+    //deleteEnemy() {
+    //    setTimeout(() => {
+    //        let position = this.level.enemies.indexOf(enemy);
+    //        this.level.enemies.splice(position, 1);
+    //    }, 1000);
+    //}
+
+    //makeDeleteEnemy() {
+    //    if(this.deletable = true) {
+    //        this.deleteEnemy();
+    //    }
+    //}
    
 }
