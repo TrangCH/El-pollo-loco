@@ -108,6 +108,7 @@ class World {
         this.checkCollisionsBottles();
         this.checkCollisionThrowableObjectsWithEndboss();
         this.checkCollisionThrowableObjectsWithChickens();
+        this.checkCollisionCharacterWithHeadFromChicken();
     }
 
 
@@ -159,14 +160,27 @@ class World {
                         setTimeout(() => {
                             let position = this.level.enemies.indexOf(enemy);
                             this.level.enemies.splice(position, 1);
-                        }, 1000);
+                        }, 200);
                     }
                 }
             });
         });
     }
 
-
+    checkCollisionCharacterWithHeadFromChicken() {
+        this.level.enemies.forEach((enemy) => {
+            if (this.character.isCollidingHead(enemy)) {
+                if (enemy instanceof Chicken) {                       
+                    enemy.energy = 0;
+                    //enemy.deletable = true;
+                    setTimeout(() => {
+                        let position = this.level.enemies.indexOf(enemy);
+                        this.level.enemies.splice(position, 1);
+                    }, 200);
+                }
+            }
+        });
+    }
 
     /**
      * This function tests whether a collision with another object is taking place or not.

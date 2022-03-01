@@ -50,6 +50,19 @@ class MovableObject extends DrawableObject { // template
             this.y < mo.y + mo.height;
     }
 
+    isCollidingHead(mo) {
+        return this.y + this.height > mo.y - this.offsetForHead.top &&
+        this.x + this.width > mo.x + this.offsetForHead.left &&
+        this.x + this.width < mo.x + mo.width + 50;
+    }
+
+    offsetForHead = {
+        top: 10,
+        bottom: 0,
+        left: 20,
+        right: 0
+    }
+
     /**
     * character.isColliding(chicken)
     */
@@ -76,7 +89,7 @@ class MovableObject extends DrawableObject { // template
      * Damage
      */
     hitEndboss() {
-        this.energy -= 5; // 10
+        this.energy -= 10; // 5, 10
         if (this.energy < 0) {
             this.energy = 0;
         } else {
