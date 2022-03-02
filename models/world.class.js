@@ -116,7 +116,7 @@ class World {
      * This function tests whether button D is pressed and, if necessary, indicates that a bottle has been thrown.
      */
     checkThrowObjects() {
-        if (this.keyboard.D && this.character.collectionBottles >= 1) {
+        if (this.keyboard.D && this.character.collectionBottles == 1) { // >= 1
             this.character.collectionBottles -= 1; // löschen
             let bottle = new ThrowableObject(this.character.x + 25, this.character.y + 100, this.character.otherDirection); // Von Koordinate (x, y) character
             this.throwableObjects.push(bottle); // Füge neuen bottle hinzu
@@ -154,7 +154,7 @@ class World {
         this.throwableObjects.forEach((throwableObject) => {
             this.level.enemies.forEach((enemy) => {
                 if (throwableObject.isColliding(enemy)) {
-                    if (enemy instanceof Chicken) {                       
+                    if (enemy instanceof Chicken) {
                         enemy.energy = 0;
                         //enemy.deletable = true;
                         setTimeout(() => {
@@ -167,16 +167,16 @@ class World {
         });
     }
 
+    /**
+     * This function checks whether the character collides with the chickens (on the head).
+     */
     checkCollisionCharacterWithHeadFromChicken() {
         this.level.enemies.forEach((enemy) => {
-            if (this.character.isCollidingHead(enemy)) {
-                if (enemy instanceof Chicken) {                       
+            if (this.character.isCollidingHead(enemy) && (this.character.y + this.character.height) < 420) {
+                if (enemy instanceof Chicken) {
                     enemy.energy = 0;
-                    //enemy.deletable = true;
-                    setTimeout(() => {
-                        let position = this.level.enemies.indexOf(enemy);
-                        this.level.enemies.splice(position, 1);
-                    }, 200);
+                    let position = this.level.enemies.indexOf(enemy);
+                    this.level.enemies.splice(position, 1);
                 }
             }
         });
@@ -257,7 +257,7 @@ class World {
         // Um alle meine Gegner zu kriegen.
         // forEach: kontrolliere für jeden einzelnen Gegner, ob meine Gegner mit meinem character kollidieren.
         this.level.bottles.forEach((bottle) => {
-            if (this.character.isColliding(bottle)) {
+            if (this.character.isColliding(bottle) && this.bottlebar.percentage == 0) {
                 this.character.toCollectBottles();
                 // Die indexOf() Methode gibt den Index der Zeichenkette innerhalb des aufrufenden String Objekts des ersten Vorkommnis des angegebenen Wertes beginnend bei fromIndex zurück. Gibt -1 zurück, wenn der Wert nicht gefunden wurde.
                 let position = this.level.bottles.indexOf(bottle);

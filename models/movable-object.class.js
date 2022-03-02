@@ -46,8 +46,8 @@ class MovableObject extends DrawableObject { // template
     isColliding(mo) {
         return this.x + this.width > mo.x &&
             this.y + this.height > mo.y &&
-            this.x < mo.x + mo.width && //+ mo.width
-            this.y < mo.y + mo.height;
+            this.x < mo.x &&//+ mo.width && //+ mo.width
+            this.y < mo.y + mo.height - 50;
     }
 
     isCollidingHead(mo) {
@@ -130,9 +130,9 @@ class MovableObject extends DrawableObject { // template
     * Collection coins
     */
     toCollectCoins() {
-        this.collectionCoins += 10;
-        if (this.collectionCoins > 100) {
-            this.collectionCoins = 100;
+        this.collectionCoins += 10; // +10
+        if (this.collectionCoins > 100) { // > 100
+            this.collectionCoins = 100; // = 100
         } else {
             this.lastCollectionCoins = new Date().getTime();
         }
@@ -142,9 +142,9 @@ class MovableObject extends DrawableObject { // template
     * Collection bottles
     */
     toCollectBottles() {
-        this.collectionBottles += 1;
-        if (this.collectionBottles > 10) {
-            this.collectionBottles = 10;
+        this.collectionBottles += 1; // += 1
+        if (this.collectionBottles == 0) { // > 10
+            this.collectionBottles = 1; // = 10
         } else {
             this.lastCollectionBottels = new Date().getTime();
         }
