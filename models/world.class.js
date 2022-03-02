@@ -108,7 +108,7 @@ class World {
         this.checkCollisionsBottles();
         this.checkCollisionThrowableObjectsWithEndboss();
         this.checkCollisionThrowableObjectsWithChickens();
-        this.checkCollisionCharacterWithHeadFromChicken();
+        //this.checkCollisionCharacterWithHeadFromChicken();
     }
 
 
@@ -160,7 +160,7 @@ class World {
                         setTimeout(() => {
                             let position = this.level.enemies.indexOf(enemy);
                             this.level.enemies.splice(position, 1);
-                        }, 200);
+                        }, 250);
                     }
                 }
             });
@@ -170,17 +170,17 @@ class World {
     /**
      * This function checks whether the character collides with the chickens (on the head).
      */
-    checkCollisionCharacterWithHeadFromChicken() {
-        this.level.enemies.forEach((enemy) => {
-            if (this.character.isCollidingHead(enemy) && (this.character.y + this.character.height) < 420) {
-                if (enemy instanceof Chicken) {
-                    enemy.energy = 0;
-                    let position = this.level.enemies.indexOf(enemy);
-                    this.level.enemies.splice(position, 1);
-                }
-            }
-        });
-    }
+    //checkCollisionCharacterWithHeadFromChicken() {
+    //    this.level.enemies.forEach((enemy) => {
+    //        if (this.character.isCollidingHead(enemy) && (this.character.y + this.character.height) < 420) {
+    //            if (enemy instanceof Chicken) {
+    //                enemy.energy = 0;
+    //                let position = this.level.enemies.indexOf(enemy);
+    //                this.level.enemies.splice(position, 1);
+    //            }
+    //        }
+    //    });
+    //}
 
     /**
      * This function tests whether a collision with another object is taking place or not.

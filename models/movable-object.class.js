@@ -46,22 +46,22 @@ class MovableObject extends DrawableObject { // template
     isColliding(mo) {
         return this.x + this.width > mo.x &&
             this.y + this.height > mo.y &&
-            this.x < mo.x &&//+ mo.width && //+ mo.width
+            this.x < mo.x + mo.width && //+ mo.width
             this.y < mo.y + mo.height - 50;
     }
 
-    isCollidingHead(mo) {
-        return this.y + this.height > mo.y - this.offsetForHead.top &&
-        this.x + this.width > mo.x + this.offsetForHead.left &&
-        this.x + this.width < mo.x + mo.width + 50;
-    }
+    //isCollidingHead(mo) {
+    //    return this.y + this.height > mo.y - this.offsetForHead.top &&
+    //    this.x + this.width > mo.x + this.offsetForHead.left &&
+    //    this.x + this.width < mo.x + mo.width + 50;
+    //}
 
-    offsetForHead = {
-        top: 10,
-        bottom: 0,
-        left: 20,
-        right: 0
-    }
+    //offsetForHead = {
+    //    top: 10,
+    //    bottom: 0,
+    //    left: 20,
+    //    right: 0
+    //}
 
     /**
     * character.isColliding(chicken)
