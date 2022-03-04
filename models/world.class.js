@@ -27,6 +27,8 @@ class World {
         this.canvas = document.getElementById('canvas');     // Greifen auf globale Variable zu. Das rechte canvas wird in das linke reingeschrieben.
         this.setWorld();
         this.run();
+        console.log(this.level.enemies[this.level.enemies.length - 1]);
+        console.log(this.level.enemies[this.level.enemies.length - 1]);
     }
 
     setWorld() {
@@ -154,6 +156,7 @@ class World {
         this.throwableObjects.forEach((throwableObject) => {
             this.level.enemies.forEach((enemy) => {
                 if (throwableObject.isColliding(enemy)) {
+                    console.log('Hit enemy', enemy);
                     if (enemy instanceof Chicken) {
                         enemy.energy = 0;
                         //enemy.deletable = true;
@@ -344,7 +347,7 @@ class World {
             this.flipImage(mo);
         }
         mo.draw(this.ctx);
-        //mo.drawFrame(this.ctx);
+        mo.drawFrame(this.ctx);
 
         // Alles wieder rückgängig machen, damit die nächsten Bilder nicht mehr gespiegelt sind.
         if (mo.otherDirection) { // Wenn wir unseren Kontext verändert haben, dann:
