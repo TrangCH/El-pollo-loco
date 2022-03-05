@@ -28,7 +28,6 @@ class World {
         this.setWorld();
         this.run();
         console.log(this.level.enemies[this.level.enemies.length - 1]);
-        console.log(this.level.enemies[this.level.enemies.length - 1]);
     }
 
     setWorld() {
@@ -118,18 +117,31 @@ class World {
      * This function tests whether button D is pressed and, if necessary, indicates that a bottle has been thrown.
      */
     checkThrowObjects() {
-        if (this.keyboard.D && this.character.collectionBottles == 1) { // >= 1
+        if (this.keyboard.D && this.character.collectionBottles >= 1) { // >= 1
             this.character.collectionBottles -= 1; // löschen
             let bottle = new ThrowableObject(this.character.x + 25, this.character.y + 100, this.character.otherDirection); // Von Koordinate (x, y) character
             this.throwableObjects.push(bottle); // Füge neuen bottle hinzu
             this.bottlebar.setPercentage(this.character.collectionBottles); // bottlebar aktualisieren
+            this.checkKeyDOncePerSecond();
         }
-        // else if (this.keyboard.D && this.character.collectionBottles >= 1 && this.character.otherDirection == true) {
-        //     this.character.collectionBottles -= 1; // löschen
-        //     let bottle = new ThrowableObject(this.character.x - 30, this.character.y + 70); // Von Koordinate (x, y) character
-        //     this.throwableObjects.push(bottle); // Füge neuen bottle hinzu
-        //     this.bottlebar.setPercentage(this.character.collectionBottles); // bottlebar aktualisieren
-        // }
+    }
+
+    /**
+     * Key D can only be used once per second
+     */
+    checkKeyDOncePerSecond() {
+        let clicktTime1 = new Date().getTime();
+        let checkTimepassedInterval = setInterval(() => {
+            if (this.keyboard.D && this.character.collectionBottles >= 1) {
+                let clickTime2 = new Date().getTime();
+                let timepassed = clickTime2 - clicktTime1;
+                if (timepassed < 1000) {
+                    this.keyboard.D = false;
+                    console.log('Zeitraum', timepassed);
+                }
+            }
+            clearInterval(checkTimepassedInterval);
+        }, 100);
     }
 
     /**
@@ -260,7 +272,7 @@ class World {
         // Um alle meine Gegner zu kriegen.
         // forEach: kontrolliere für jeden einzelnen Gegner, ob meine Gegner mit meinem character kollidieren.
         this.level.bottles.forEach((bottle) => {
-            if (this.character.isColliding(bottle) && this.bottlebar.percentage == 0) {
+            if (this.character.isColliding(bottle) && this.bottlebar.percentage < 5) {
                 this.character.toCollectBottles();
                 // Die indexOf() Methode gibt den Index der Zeichenkette innerhalb des aufrufenden String Objekts des ersten Vorkommnis des angegebenen Wertes beginnend bei fromIndex zurück. Gibt -1 zurück, wenn der Wert nicht gefunden wurde.
                 let position = this.level.bottles.indexOf(bottle);

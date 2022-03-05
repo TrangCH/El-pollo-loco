@@ -41,17 +41,17 @@ class Bottlebar extends DrawableObject {
      * Returns the number of the picture depending on the conditions.
      */
     resolveImageIndex() {
-        if (this.percentage >= 1) { //  >= 17
+        if (this.percentage >= 5) { //  >= 17
             return 5; // 100%
             //this.character.isColliding(bottle) = false;
-        //} else if (this.percentage >= 8) { // >= 13
-        //    return 4; // 80%
-        //} else if (this.percentage >= 6) { // >= 9
-        //    return 3; // 60%
-        //} else if (this.percentage >= 4) { // >= 5
-        //    return 2; // 40%
-        //} else if (this.percentage >= 2) { // >= 1
-        //    return 1; // 20%
+        } else if (this.percentage >= 4) { // >= 13
+            return 4; // 80%
+        } else if (this.percentage >= 3) { // >= 9
+            return 3; // 60%
+        } else if (this.percentage >= 2) { // >= 5
+            return 2; // 40%
+        } else if (this.percentage >= 1) { // >= 1
+            return 1; // 20%
         } else {
             return 0; // 0%
         }

@@ -15,7 +15,7 @@ class Bottles extends MovableObject {
         
         //this.x = Bottles.lastBottlesXPos + 250; // Math.random() * 50 + Math.random() * 200// 200  Math.random() liegt zwischen 0 und 1, Zahl zwischen 200 und 700
         //Bottles.lastBottlesXPos = this.x;
-        this.x = this.x + Math.random() * 2250; // 2000
+        this.x = this.x + Math.random() * 2000; // 2000
     }
     
 }

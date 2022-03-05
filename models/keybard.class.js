@@ -98,20 +98,6 @@ class Keyboard {
             if (e.keyCode == 68) {
                 this.D = true;
             }
-            //let firstActionDate = new Date();
-            //console.log('Aktuelle Zeit ist:', firstActionDate);
-            //setTimeout(() => {
-            //    if (e.keyCode == 68) {
-            //        let secondActionDate = new Date();
-            //        let temporalDistance = secondActionDate.getTime() - firstActionDate.getTime();
-            //        if (temporalDistance < 1000) {
-            //            this.D = false;
-            //            // Taste D ausgeschaltet und erst nach einer Sekunde wieder funktionsfähig.
-            //            console.log('Der zeitliche Abstand zwischen zwei Klicks ist kleiner als 1000 und beträgt', temporalDistance);
-            //        }
-            //    }
-            //}, 500);
-
         });
 
         /**

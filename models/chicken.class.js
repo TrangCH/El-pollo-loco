@@ -85,18 +85,5 @@ class Chicken extends MovableObject {
             this.playAnimation(this.IMAGES_WALKING);
         }
     };
-
-    //deleteEnemy() {
-    //    setTimeout(() => {
-    //        let position = this.level.enemies.indexOf(enemy);
-    //        this.level.enemies.splice(position, 1);
-    //    }, 1000);
-    //}
-
-    //makeDeleteEnemy() {
-    //    if(this.deletable = true) {
-    //        this.deleteEnemy();
-    //    }
-    //}
    
 }

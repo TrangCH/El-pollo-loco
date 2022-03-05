@@ -54,19 +54,6 @@ class MovableObject extends DrawableObject { // template
             this.y < mo.y + mo.height
     }
 
-    //isCollidingHead(mo) {
-    //    return this.y + this.height > mo.y - this.offsetForHead.top &&
-    //    this.x + this.width > mo.x + this.offsetForHead.left &&
-    //    this.x + this.width < mo.x + mo.width + 50;
-    //}
-
-    //offsetForHead = {
-    //    top: 10,
-    //    bottom: 0,
-    //    left: 20,
-    //    right: 0
-    //}
-
     /**
     * character.isColliding(chicken)
     */
@@ -147,8 +134,8 @@ class MovableObject extends DrawableObject { // template
     */
     toCollectBottles() {
         this.collectionBottles += 1; // += 1
-        if (this.collectionBottles == 0) { // > 10
-            this.collectionBottles = 1; // = 10
+        if (this.collectionBottles >= 5) { // > 10
+            this.collectionBottles = 5; // = 10
         } else {
             this.lastCollectionBottels = new Date().getTime();
         }
