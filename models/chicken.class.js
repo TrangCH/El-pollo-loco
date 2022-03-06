@@ -12,6 +12,7 @@ class Chicken extends MovableObject {
         'img/3.Secuencias_Enemy_básico/Versión_Gallinita (estas salen por orden de la gallina gigantona)/4.G_muerte.png'
     ];
     energy = 100;
+    attack = false;
 
     //deletable = false;
 
