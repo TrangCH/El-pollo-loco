@@ -15,3 +15,23 @@ function init() {
     world = new World(); // Wir erstellen eine neue Welt.
 }
 
+
+
+
+function turnOnControlButtons() {
+    document.getElementById('leftKey').classList.remove('d-none');
+    document.getElementById('rightKey').classList.remove('d-none');
+    document.getElementById('AKey').classList.remove('d-none');
+    document.getElementById('BKey').classList.remove('d-none');
+    document.getElementById('turnOnControlButtons').classList.add('d-none');
+    document.getElementById('turnOffControlButtons').classList.remove('d-none');
+}
+
+function turnOffControlButtons() {
+    document.getElementById('leftKey').classList.add('d-none');
+    document.getElementById('rightKey').classList.add('d-none');
+    document.getElementById('AKey').classList.add('d-none');
+    document.getElementById('BKey').classList.add('d-none');
+    document.getElementById('turnOffControlButtons').classList.add('d-none');
+    document.getElementById('turnOnControlButtons').classList.remove('d-none');
+}

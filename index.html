@@ -50,7 +50,7 @@
     <!--onload="init()"-->
 
 
-    <div id="begin" class="begin d-none">
+    <div id="begin" class="begin">
         <!--d-none entfernen-->
 
         <img id="start-screen" class="startScreen" src='img/9.Intro _ Outro Image/Start Screen/Opción 1.png'>
@@ -112,17 +112,23 @@
 
             </canvas>
             <!--<div class="key-button-area">-->
-                <img class="left-key-button" src="img/10.Keys/left.png" id="leftKey">
-                <img class="right-key-button" src="img/10.Keys/right.png" id="rightKey">
 
-                <img class="a-key-button" src="img/10.Keys/A.png" id="AKey">
-                <img class="b-key-button" src="img/10.Keys/B.png" id="BKey">
+                <img class="left-key-button d-none" src="img/10.Keys/left.png" id="leftKey">
+                <img class="right-key-button d-none" src="img/10.Keys/right.png" id="rightKey">
+
+                <img class="a-key-button d-none" src="img/10.Keys/A.png" id="AKey">
+                <img class="b-key-button d-none" src="img/10.Keys/B.png" id="BKey">
             <!--</div>-->
         </div>
         <div class="reload-button d-none" id="playAgain" onclick="hereWeGo()">
             <b>NEW START</b>
         </div>
-
+        <div class="turn-control-button" id="turnOnControlButtons" onclick="turnOnControlButtons()">
+            <b>Turn on control buttons (Only for touchscreen)</b>
+        </div>
+        <div class="turn-control-button d-none" id="turnOffControlButtons" onclick="turnOffControlButtons()">
+            <b>Turn off control buttons (Only for touchscreen)</b>
+        </div>
 
 
     </div>

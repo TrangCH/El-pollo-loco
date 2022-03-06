@@ -169,6 +169,21 @@ td {
     cursor: pointer;
 }
 
+.turn-control-button {
+    font-size: 0.8em;
+    color: white;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 8px;
+    padding-right: 8px;
+    background-color: grey;
+    border-radius: 4px;
+    text-align: center;
+    cursor: pointer;
+}
+
 .how-it-goes {
     margin-top: 12px;
     margin-bottom: 12px;
