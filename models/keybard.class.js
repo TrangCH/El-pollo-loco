@@ -97,6 +97,9 @@ class Keyboard {
 
             if (e.keyCode == 68) {
                 this.D = true;
+                setTimeout(() => {
+                    this.D = false;
+                }, 200);
             }
         });
 

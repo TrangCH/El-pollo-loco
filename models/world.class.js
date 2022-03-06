@@ -135,9 +135,8 @@ class World {
             if (this.keyboard.D && this.character.collectionBottles >= 1) {
                 let clickTime2 = new Date().getTime();
                 let timepassed = clickTime2 - clicktTime1;
-                if (timepassed < 1000) {
+                if (timepassed < 1100) {
                     this.keyboard.D = false;
-                    console.log('Zeitraum', timepassed);
                 }
             }
             clearInterval(checkTimepassedInterval);
