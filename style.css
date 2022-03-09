@@ -17,7 +17,7 @@ body {
 
 canvas {
     background-color: black;
-    margin-top: 32px;
+    /*margin-top: 32px;*/
     display: block;
 }
 

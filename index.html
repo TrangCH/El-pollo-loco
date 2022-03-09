@@ -106,9 +106,18 @@
         </div>
 
     </div>
-    <div>
+    <div id="game" class="d-none">
+        <div class="reload-button d-none" id="playAgain" onclick="hereWeGo()">
+            <b>NEW START</b>
+        </div>
+        <div class="turn-control-button" id="turnOnControlButtons" onclick="turnOnControlButtons()">
+            <b>Turn on control buttons (Only for touchscreen)</b>
+        </div>
+        <div class="turn-control-button d-none" id="turnOffControlButtons" onclick="turnOffControlButtons()">
+            <b>Turn off control buttons (Only for a game with a keyboard)</b>
+        </div>
         <div class="canvas-area">
-            <canvas class="canvas d-none" width="720" height="480" id="canvas">
+            <canvas class="canvas" width="720" height="480" id="canvas">
 
             </canvas>
             <!--<div class="key-button-area">-->
@@ -120,15 +129,7 @@
                 <img class="b-key-button d-none" src="img/10.Keys/B.png" id="BKey">
             <!--</div>-->
         </div>
-        <div class="reload-button d-none" id="playAgain" onclick="hereWeGo()">
-            <b>NEW START</b>
-        </div>
-        <div class="turn-control-button" id="turnOnControlButtons" onclick="turnOnControlButtons()">
-            <b>Turn on control buttons (Only for touchscreen)</b>
-        </div>
-        <div class="turn-control-button d-none" id="turnOffControlButtons" onclick="turnOffControlButtons()">
-            <b>Turn off control buttons (Only for a game with a keyboard)</b>
-        </div>
+        <!--New start und switch control-->
 
 
     </div>

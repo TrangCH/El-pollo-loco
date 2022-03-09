@@ -1,5 +1,6 @@
 function hereWeGo() {
     document.getElementById('begin').classList.add('d-none');
+    document.getElementById('game').classList.remove('d-none');
     init();
 }
 

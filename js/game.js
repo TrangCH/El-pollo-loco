@@ -6,7 +6,7 @@ let world;
  */
 function init() {
     // Sobald das Spiel startet, ziehen wir den div´s die Klasse d-none zurück und zeigen sie somit.
-    document.getElementById('canvas').classList.remove('d-none');
+    document.getElementById('canvas').classList.remove('d-none'); // doc.getElById(canvas)
     document.getElementById('playAgain').classList.remove('d-none');
 
     //Bottles.lastBottlesXPos = -1500;
