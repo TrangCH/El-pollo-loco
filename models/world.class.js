@@ -97,7 +97,6 @@ class World {
         this.checkGameOver();
         this.checkCollisions();
         this.checkThrowObjects();
-        //this.checkMovementEnemiesToDirectionCharacter();
     }
 
     /**
@@ -109,7 +108,6 @@ class World {
         this.checkCollisionsBottles();
         this.checkCollisionThrowableObjectsWithEndboss();
         this.checkCollisionThrowableObjectsWithChickens();
-        //this.checkCollisionCharacterWithHeadFromChicken();
     }
 
 
@@ -170,7 +168,6 @@ class World {
                     console.log('Hit enemy', enemy);
                     if (enemy instanceof Chicken) {
                         enemy.energy = 0;
-                        //enemy.deletable = true;
                         setTimeout(() => {
                             let position = this.level.enemies.indexOf(enemy);
                             this.level.enemies.splice(position, 1);
@@ -180,21 +177,6 @@ class World {
             });
         });
     }
-
-    /**
-     * This function checks whether the character collides with the chickens (on the head).
-     */
-    //checkCollisionCharacterWithHeadFromChicken() {
-    //    this.level.enemies.forEach((enemy) => {
-    //        if (this.character.isCollidingHead(enemy) && (this.character.y + this.character.height) < 420) {
-    //            if (enemy instanceof Chicken) {
-    //                enemy.energy = 0;
-    //                let position = this.level.enemies.indexOf(enemy);
-    //                this.level.enemies.splice(position, 1);
-    //            }
-    //        }
-    //    });
-    //}
 
     /**
      * This function tests whether a collision with another object is taking place or not.
@@ -222,13 +204,9 @@ class World {
      */
     checkGameOver() {
         if (this.character.isDead() || this.level.enemies[this.level.enemies.length - 1].isDead()) { // || this... = Endboss
-            //this.character.stopAnimate();
-            //this.level.enemies[this.level.enemies.length - 1].stopAnimate(); // = Endboss.stopAnimate()
-            //if (this.character.collectionCoins >= 80) {
             setTimeout(() => {
                 this.stop();
             }, 1000);
-            //this.stop();
             setTimeout(() => {
                 this.showGameOverScreen();
             }, 2000);
@@ -243,8 +221,6 @@ class World {
         if (this.win && this.character.collectionCoins == 100) {
             this.addToMap(this.youwin);
         } else {
-            //document.getElementById('canvas').innerHTML = '';
-            //document.getElementById('innerCanvas').src = './img/9.Intro _ Outro Image/_Game over_ screen/1.you lost.png';
             this.addToMap(this.youlost);
         }
     }
@@ -261,7 +237,6 @@ class World {
                 // Die indexOf() Methode gibt den Index der Zeichenkette innerhalb des aufrufenden String Objekts des ersten Vorkommnis des angegebenen Wertes beginnend bei fromIndex zurück. Gibt -1 zurück, wenn der Wert nicht gefunden wurde.
                 let position = this.level.coins.indexOf(coin);
                 this.level.coins.splice(position, 1);
-                //this.character.deleteCoinAfterCollision();
                 this.coinbar.setPercentage(this.character.collectionCoins);
             }
         });
@@ -284,19 +259,7 @@ class World {
         });
     }
 
-    // checkMovementEnemiesToDirectionCharacter() {
-    //     this.level.enemies.forEach((//enemy) => {
-    //         let position = this.level.enemies.indexOf(enemy);
-    //         if (this.character.x < this.level.enemies[position].x) {
-    //             this.level.enemies[position].moveLeft();
-    //         } else {
-    //             if (this.character.x > this.level.enemies[position].x) {
-    //                 this.level.enemies[position].moveRight();
-    //             };
-    //         }
-    //     });
-    // }
-
+ 
     /**
      * To draw a picture
      */
@@ -386,7 +349,5 @@ class World {
         mo.x = mo.x * -1;
         this.ctx.restore(); // Alle Änderungen rückgängig machen.
     }
-
-
 
 }
