@@ -35,20 +35,17 @@ class Keyboard {
             console.log(this.LEFT);
         });
 
-        this.rightKey.addEventListener('touchstart', () => { // Gilt für alle Tasten.
-            // console.log(e.keyCode); // TastenCode
+        this.rightKey.addEventListener('touchstart', () => { 
             this.RIGHT = true;
             console.log(this.RIGHT);
         });
 
-        this.AKey.addEventListener('touchstart', () => { // Gilt für alle Tasten.
-            // console.log(e.keyCode); // TastenCode
+        this.AKey.addEventListener('touchstart', () => { 
             this.SPACE = true;
             console.log(this.SPACE);
         });
 
-        this.BKey.addEventListener('touchstart', () => { // Gilt für alle Tasten.
-            // console.log(e.keyCode); // TastenCode
+        this.BKey.addEventListener('touchstart', () => { 
             this.D = true;
             console.log(this.D);
         });
@@ -62,20 +59,17 @@ class Keyboard {
             console.log(this.LEFT);
         });
 
-        this.rightKey.addEventListener('touchend', () => { // Gilt für alle Tasten.
-            // console.log(e.keyCode); // TastenCode
+        this.rightKey.addEventListener('touchend', () => { 
             this.RIGHT = false;
             console.log(this.RIGHT);
         });
 
-        this.AKey.addEventListener('touchend', () => { // Gilt für alle Tasten.
-            // console.log(e.keyCode); // TastenCode
+        this.AKey.addEventListener('touchend', () => { 
             this.SPACE = false;
             console.log(this.SPACE);
         });
 
-        this.BKey.addEventListener('touchend', () => { // Gilt für alle Tasten.
-            // console.log(e.keyCode); // TastenCode
+        this.BKey.addEventListener('touchend', () => { 
             this.D = false;
             console.log(this.D);
         });

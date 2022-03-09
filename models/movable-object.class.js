@@ -3,7 +3,7 @@ class MovableObject extends DrawableObject { // template
     speed = 0.1;
 
     otherDirection = false; // false, weil standardmäßig sollte kein Bild gespiegelt sein
-    speedY = 0; // speed in y-Richtung
+    speedY = 0; 
     acceleration = 2.5; // Beschleunigung (vereinfachte Gravitationskraft)#
     energy = 100;
 
@@ -25,7 +25,7 @@ class MovableObject extends DrawableObject { // template
                 this.y -= this.speedY; // y-Achse - speed in y-Richtung
                 this.speedY -= this.acceleration; // speed in y-Richtung - Beschleunigung
             }
-        }, 1000 / 25); // 25x pro Sekunde
+        }, 1000 / 25); 
     }
 
     /**
@@ -44,10 +44,6 @@ class MovableObject extends DrawableObject { // template
      * character.isColliding(chicken)
      */
     isColliding(mo) {
-        // return this.x + this.width > mo.x &&
-        //    this.y + this.height > mo.y &&
-        //    this.x < mo.x + mo.width && //+ mo.width
-        //    this.y < mo.y + mo.height - 50;
             return this.x + this.width > mo.x &&
             this.y + this.height > mo.y &&
             this.x < mo.x + mo.width &&
@@ -60,7 +56,7 @@ class MovableObject extends DrawableObject { // template
     isCollidingWidthCoins(mo) {
         return this.x + this.width > mo.x &&
             this.y + this.height > mo.y &&
-            this.x < mo.x + mo.width && // + mo.width
+            this.x < mo.x + mo.width && 
             this.y + this.offsetHeight < mo.y + mo.height;
     }
 
