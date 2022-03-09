@@ -225,10 +225,13 @@ class World {
             //this.character.stopAnimate();
             //this.level.enemies[this.level.enemies.length - 1].stopAnimate(); // = Endboss.stopAnimate()
             //if (this.character.collectionCoins >= 80) {
-            this.stop();
+            setTimeout(() => {
+                this.stop();
+            }, 1000);
+            //this.stop();
             setTimeout(() => {
                 this.showGameOverScreen();
-            }, 500);
+            }, 2000);
         };
         //};
     }
