@@ -13,12 +13,23 @@ class Keyboard {
     BKey = document.getElementById('BKey');
 
     constructor() {
+        this.bindTouchscreen();
+        this.bindKeyboard();
+    }
 
-        /**
-         * Touchscreen: Touchstart
-         */
+    bindTouchscreen() {
+        this.touchStart();
+        this.touchEnd();
+    }
 
-        this.leftKey.addEventListener('touchstart', () => { // Gilt für alle Tasten.
+    bindKeyboard() {
+        window.addEventListener('keydown', this.handleKeyDown.bind(this));
+        window.addEventListener('keyup', this.handelKeyUp.bind(this));
+    }
+
+    touchStart() {
+
+         this.leftKey.addEventListener('touchstart', () => { // Gilt für alle Tasten.
             // console.log(e.keyCode); // TastenCode
             this.LEFT = true;
             console.log(this.LEFT);
@@ -41,12 +52,11 @@ class Keyboard {
             this.D = true;
             console.log(this.D);
         });
+    }
 
-        /**
-         * Touchscreen: Touchend
-         */
+    touchEnd() {
 
-        this.leftKey.addEventListener('touchend', () => { // Gilt für alle Tasten.
+         this.leftKey.addEventListener('touchend', () => { // Gilt für alle Tasten.
             // console.log(e.keyCode); // TastenCode
             this.LEFT = false;
             console.log(this.LEFT);
@@ -69,68 +79,64 @@ class Keyboard {
             this.D = false;
             console.log(this.D);
         });
-
-        /**
-        * As soon as the button is pressed.
-        */
-        window.addEventListener('keydown', (e) => { // Gilt für alle Tasten.
-            // console.log(e.keyCode); // TastenCode
-            if (e.keyCode == 39) {
-                this.RIGHT = true;
-            }
-
-            if (e.keyCode == 37) {
-                this.LEFT = true;
-            }
-
-            if (e.keyCode == 38) {
-                this.UP = true;
-            }
-
-            if (e.keyCode == 40) {
-                this.DOWN = true;
-            }
-
-            if (e.keyCode == 32) {
-                this.SPACE = true;
-            }
-
-            if (e.keyCode == 68) {
-                this.D = true;
-                setTimeout(() => {
-                    this.D = false;
-                }, 200);
-            }
-        });
-
-        /**
-         * As soon as the button is released.
-         */
-        window.addEventListener('keyup', (e) => { // Gilt für alle Tasten.
-            if (e.keyCode == 39) {
-                this.RIGHT = false;
-            }
-
-            if (e.keyCode == 37) {
-                this.LEFT = false;
-            }
-
-            if (e.keyCode == 38) {
-                this.UP = false;
-            }
-
-            if (e.keyCode == 40) {
-                this.DOWN = false;
-            }
-
-            if (e.keyCode == 32) {
-                this.SPACE = false;
-            }
-
-            if (e.keyCode == 68) {
-                this.D = false;
-            }
-        });
     }
 
+    handleKeyDown(e) {
+        // Gilt für alle Tasten.
+        if (e.keyCode == 39) {
+            this.RIGHT = true;
+        }
+
+        if (e.keyCode == 37) {
+            this.LEFT = true;
+        }
+
+        if (e.keyCode == 38) {
+            this.UP = true;
+        }
+
+        if (e.keyCode == 40) {
+            this.DOWN = true;
+        }
+
+        if (e.keyCode == 32) {
+            this.SPACE = true;
+        }
+
+        if (e.keyCode == 68) {
+            this.D = true;
+            setTimeout(() => {
+                this.D = false;
+            }, 200);
+        }
+
+    }
+
+    handelKeyUp(e) {
+        // Gilt für alle Tasten.
+        if (e.keyCode == 39) {
+            this.RIGHT = false;
+        }
+
+        if (e.keyCode == 37) {
+            this.LEFT = false;
+        }
+
+        if (e.keyCode == 38) {
+            this.UP = false;
+        }
+
+        if (e.keyCode == 40) {
+            this.DOWN = false;
+        }
+
+        if (e.keyCode == 32) {
+            this.SPACE = false;
+        }
+
+        if (e.keyCode == 68) {
+            this.D = false;
+        }
+
+    }
 }
