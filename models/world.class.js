@@ -30,6 +30,9 @@ class World {
         console.log(this.level.enemies[this.level.enemies.length - 1]);
     }
 
+    /**
+     * 
+     */
     setWorld() {
         this.character.world = this;
         // level.enemies[this.level.enemies.length - 1] = Endboss

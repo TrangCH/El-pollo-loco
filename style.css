@@ -142,7 +142,7 @@ td {
 }
 
 .button:hover {
-    transition: all 1s ease-out;
+    transition: all 1s ease-in-out;
     background-color: green;
 }
 
@@ -167,6 +167,11 @@ td {
     border-radius: 4px;
     text-align: center;
     cursor: pointer;
+}
+
+.reload-button:hover {
+    background-color: rgb(228, 1, 1);
+    transition: all 1s ease-in-out;
 }
 
 .turn-control-button {
